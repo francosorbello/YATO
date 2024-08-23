@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="TodoNodeSaveData" load_steps=2 format=3 uid="uid://dkaawpsy473e8"]
+
+[ext_resource type="Script" path="res://save_data/todo_node_save_data.gd" id="1_bi0gn"]
+
+[resource]
+script = ExtResource("1_bi0gn")

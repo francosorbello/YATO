@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://o6rnfxiau175"]
+
+[ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
+[ext_resource type="PackedScene" uid="uid://b4tfya1rintqc" path="res://nodes/comment_node/comment_node.tscn" id="2_yjuuj"]
+
+[node name="Graph" type="GraphEdit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wh2cp")
+comment = ExtResource("2_yjuuj")
+
+[connection signal="connection_request" from="." to="." method="_on_connection_request"]

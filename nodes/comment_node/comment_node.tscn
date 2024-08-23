@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4tfya1rintqc"]
+
+[ext_resource type="Script" path="res://nodes/comment_node/comment_node.gd" id="1_k4yig"]
+
+[node name="CommentNode" type="GraphNode"]
+offset_right = 218.0
+offset_bottom = 129.0
+resizable = true
+title = "Comment"
+slot/0/left_enabled = true
+slot/0/left_type = 1
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_k4yig")
+node_type = 1
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Add comment here"
