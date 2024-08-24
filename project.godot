@@ -14,6 +14,10 @@ config/name="yato"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalData="*res://utils/GlobalData.gd"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

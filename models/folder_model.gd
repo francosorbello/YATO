@@ -11,6 +11,12 @@ func add_todo_node(node : TodoNodeModel):
         nodes.append(node)
         return node
 
+func remove_todo_node(id : String):
+    for node in nodes:
+        if node.uuid == id:
+            nodes.erase(node)
+            return
+
 func get_node_by_id(id : String):
     for node in nodes:
         if node.uuid == id:

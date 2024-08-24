@@ -2,50 +2,47 @@ extends GraphEdit
 
 enum NodeTypes 
 {
-    NT_FOLDER,
-    NT_COMMENT,
-    NT_TASK
+	NT_FOLDER,
+	NT_COMMENT,
+	NT_TASK
 }
 
 @export var comment : PackedScene
 
 func _ready() -> void:
-    var comment_btn = _create_node_btn("Comment",_on_comment_add)
-    get_menu_hbox().add_child(comment_btn);
-    add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
+	var comment_btn = _create_node_btn("Comment",_on_comment_add)
+	get_menu_hbox().add_child(comment_btn);
+
+	add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
 
 func _on_connection_request(from_node:StringName, from_port:int, to_node:StringName, to_port:int) -> void:
-    connect_node(from_node,from_port,to_node,to_port);
-    pass # Replace with function body.
+	connect_node(from_node,from_port,to_node,to_port);
+	pass # Replace with function body.
 
 func _create_node_btn(title : String, handler) -> Button:
-    var btn = Button.new()
-    btn.text = title
-    btn.pressed.connect(handler)
-    return btn
+	var btn = Button.new()
+	btn.text = title
+	btn.pressed.connect(handler)
+	return btn
 
 func _on_comment_add():
-    var center = _get_graph_center()
-    var new_comment = $FolderController.add_comment_node(center)
-    if(new_comment == null):
-        return
-    var comment_instance : TodoNode = comment.instantiate()
-    comment_instance.comment_changed.connect(_handle_comment_change)
-    print(new_comment.uuid+" new id")
-    comment_instance.model_id = new_comment.uuid
-    add_child(comment_instance)
-    comment_instance.position_offset.x = new_comment.position.x
-    comment_instance.position_offset.y = new_comment.position.y  
-    pass
+	$Views/CommentView.add_comment_to_view(_get_graph_center(),self)
 
 func _get_graph_center() -> Vector2:
-    var screen_size = DisplayServer.window_get_size()
-    var x = screen_size.x / 2 + scroll_offset.x + randi_range(-50,50)
-    var y = screen_size.y / 2 + scroll_offset.y + randi_range(-50,50)
+	var screen_size = DisplayServer.window_get_size()
+	var x = screen_size.x / 2 + scroll_offset.x + randi_range(-50,50)
+	var y = screen_size.y / 2 + scroll_offset.y + randi_range(-50,50)
 
-    return Vector2(x,y)
+	return Vector2(x,y)
 
 func _handle_comment_change(id : String, n_comment : String):
-    print("changed node "+id+" to "+n_comment)
-    $FolderController.update_comment_node(id,Vector2.ZERO,comment)
-    pass
+	print("changed node "+id+" to "+n_comment)
+	$FolderController.update_comment_node(id,Vector2.ZERO,comment)
+	pass
+
+func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
+	for child in get_children():
+		if child is TodoNode and nodes.has(child.name):
+			get_node("%CommentController").delete_comment(child.model_id)
+			child.queue_free()
+	pass # Replace with function body.
