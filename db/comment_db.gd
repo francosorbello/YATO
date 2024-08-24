@@ -8,7 +8,7 @@ func add(folder_id : String, data: Dictionary):
         new_comment.position = data.position
     else:
         push_warning("Position missing when adding "+new_comment.uuid)
-
+    nodes.append(new_comment)
     return new_comment
 
 # func verify_data(data : Dictionary) -> Error:

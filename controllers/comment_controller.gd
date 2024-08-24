@@ -14,5 +14,5 @@ func update_comment_position(id: String, pos: Vector2):
     GlobalData.get_comment_db().update(id,{"position":pos})
 
 func delete_comment(id):
-    GlobalData.current_folder_node.remove_todo_node(id)
+    GlobalData.get_comment_db().delete(id)
     pass

@@ -5,7 +5,7 @@ var nodes : Array[TodoNodeModel]
 ## Adds a node
 ## folder_id : Secondary key, the id of the folder the node is part of
 ## data : any other relevant data
-func add(folder_id : String, data : Dictionary):
+func add(_folder_id : String, _data : Dictionary):
     pass
 
 ## Remove a node from the database
@@ -13,7 +13,7 @@ func delete(id: String):
     var i = get_node_index(id)
     nodes.remove_at(i)
 
-func update(id: String, data : Dictionary):
+func update(_id: String, _data : Dictionary):
     pass
 
 ## Searches node by id. Null if it doesnt exist

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://o6rnfxiau175"]
+[gd_scene load_steps=7 format=3 uid="uid://o6rnfxiau175"]
 
 [ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
 [ext_resource type="PackedScene" uid="uid://b4tfya1rintqc" path="res://nodes/comment_node/comment_node.tscn" id="2_yjuuj"]
 [ext_resource type="Script" path="res://controllers/folder_controller.gd" id="3_hvs6c"]
 [ext_resource type="Script" path="res://controllers/comment_controller.gd" id="4_qhup1"]
+[ext_resource type="Script" path="res://controllers/connection_controller.gd" id="5_ku40f"]
 [ext_resource type="Script" path="res://views/comment_view.gd" id="5_r8306"]
 
 [node name="Graph" type="GraphEdit"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+right_disconnects = true
 script = ExtResource("1_wh2cp")
 comment = ExtResource("2_yjuuj")
 
@@ -25,6 +27,10 @@ script = ExtResource("4_qhup1")
 unique_name_in_owner = true
 script = ExtResource("3_hvs6c")
 
+[node name="ConnectionController" type="Node" parent="Controllers"]
+unique_name_in_owner = true
+script = ExtResource("5_ku40f")
+
 [node name="Views" type="Node" parent="."]
 
 [node name="CommentView" type="Node" parent="Views"]
@@ -33,3 +39,4 @@ comment = ExtResource("2_yjuuj")
 
 [connection signal="connection_request" from="." to="." method="_on_connection_request"]
 [connection signal="delete_nodes_request" from="." to="." method="_on_delete_nodes_request"]
+[connection signal="disconnection_request" from="." to="." method="_on_disconnection_request"]

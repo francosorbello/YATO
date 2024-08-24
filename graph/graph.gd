@@ -16,7 +16,8 @@ func _ready() -> void:
 	add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
 
 func _on_connection_request(from_node:StringName, from_port:int, to_node:StringName, to_port:int) -> void:
-	connect_node(from_node,from_port,to_node,to_port);
+	# connect_node(from_node,from_port,to_node,to_port);
+	$"%ConnectionController".handle_connection_request(self,from_node,from_port,to_node,to_port)
 	pass # Replace with function body.
 
 func _create_node_btn(title : String, handler) -> Button:
@@ -44,5 +45,10 @@ func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
 	for child in get_children():
 		if child is TodoNode and nodes.has(child.name):
 			get_node("%CommentController").delete_comment(child.model_id)
+			get_node("%ConnectionController").delete_connections(child.model_id)
 			child.queue_free()
 	pass # Replace with function body.
+
+
+func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
+	get_node("%ConnectionController").handle_disconnect_request(self,from_node,from_port,to_node,to_port)
