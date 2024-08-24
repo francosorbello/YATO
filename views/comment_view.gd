@@ -9,7 +9,7 @@ func add_comment_to_view(graph_center : Vector2, graph : GraphEdit):
     # add comment to model
     var center = graph_center
     print(center)
-    var new_comment = get_node("%FolderController").add_comment_node(center)
+    var new_comment = get_node("%CommentController").add_comment_node(center)
    
     if(new_comment == null):
         return

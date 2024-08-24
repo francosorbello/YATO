@@ -16,3 +16,17 @@ func add(folder_id : String, data: Dictionary):
 #         return OK
 #     else:
 #         return FAILED
+
+func update(id, data):
+    var comment_index = get_node_index(id)
+    
+    if comment_index == -1:
+        return null
+    
+    if data.has("position"):
+        nodes[comment_index].position = data.position
+    
+    if data.has("comment"):
+        nodes[comment_index].comment = data.comment
+    
+    return nodes[comment_index]
