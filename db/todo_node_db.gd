@@ -1,8 +1,11 @@
-class_name TodoNodeDB extends Object
+class_name TodoNodeDB extends Node 
 
 var nodes : Array[TodoNodeModel]
 
-func add(id : String, data : Dictionary):
+## Adds a node
+## folder_id : Secondary key, the id of the folder the node is part of
+## data : any other relevant data
+func add(folder_id : String, data : Dictionary):
     pass
 
 ## Remove a node from the database
@@ -43,4 +46,6 @@ func clear():
     nodes.clear()
 
 func verify_data(data : Dictionary) -> Error:
-    return OK
+    if data.has("position"):
+        return OK
+    return FAILED 
