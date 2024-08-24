@@ -7,4 +7,9 @@ var current_folder_node : FolderModel
 func _ready():
     if current_folder_node == null:
         current_folder_node = FolderModel.new()
-        
+
+func get_comment_db() -> TodoNodeDB:
+    return $DB/CommentDB
+
+func get_folder_db() -> TodoNodeDB:
+    return $DB/FolderDB
