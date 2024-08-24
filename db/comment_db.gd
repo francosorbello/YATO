@@ -6,8 +6,8 @@ func add(folder_id : String, data: Dictionary):
     var err = verify_data(data)
     if(err == OK):
         new_comment.position = data.position
-    else:
-        push_warning("Position missing when adding "+new_comment.uuid)
+    # else:
+    #     push_warning("Position missing when adding "+new_comment.uuid)
     nodes.append(new_comment)
     return new_comment
 
@@ -30,3 +30,28 @@ func update(id, data):
         nodes[comment_index].comment = data.comment
     
     return nodes[comment_index]
+
+func save():
+    var save_path = "res://tests/save.res"
+    var data = ListResource.new()
+    for node : CommentModel in nodes:
+        var node_save_data = CommentSaveData.new()
+        node_save_data.uuid = node.uuid
+        node_save_data.comment = node.comment
+        node_save_data.position = node.position
+        node_save_data.folder_uuid = node.folder_uuid
+        data.data.append(node_save_data)
+    var err = ResourceSaver.save(data,save_path)
+    if err == OK:
+        print("saved sucess")
+    else:
+        push_error("Error saving")
+    pass
+
+func load():
+    var save_path = "res://tests/save.res"
+    var data = ResourceLoader.load(save_path, "Resource") as ListResource
+    for value : CommentSaveData in data.data:
+        print(value.comment)
+        add(value.folder_uuid,{"position":value.position})
+        update(value.uuid,{"position":value.position,"comment":value.comment})

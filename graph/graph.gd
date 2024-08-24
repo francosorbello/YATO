@@ -10,6 +10,9 @@ enum NodeTypes
 @export var comment : PackedScene
 
 func _ready() -> void:
+	get_menu_hbox().add_child(_create_node_btn("Load",_on_load))
+	get_menu_hbox().add_child(_create_node_btn("Save",_on_save))
+	get_menu_hbox().add_child(VSeparator.new())
 	var comment_btn = _create_node_btn("Comment",_on_comment_add)
 	get_menu_hbox().add_child(comment_btn);
 
@@ -28,6 +31,13 @@ func _create_node_btn(title : String, handler) -> Button:
 
 func _on_comment_add():
 	$Views/CommentView.add_comment_to_view(_get_graph_center(),self)
+
+func _on_save():
+	GlobalData.get_comment_db().save()
+
+func _on_load():
+	GlobalData.get_comment_db().load()
+	pass
 
 func _get_graph_center() -> Vector2:
 	var screen_size = DisplayServer.window_get_size()
