@@ -25,16 +25,27 @@ func _create_node_btn(title : String, handler) -> Button:
     return btn
 
 func _on_comment_add():
-    var comment_instance : TodoNode = comment.instantiate()
-    add_child(comment_instance)
     var center = _get_graph_center()
-    comment_instance.position_offset.x = center.x
-    comment_instance.position_offset.y = center.y  
+    var new_comment = $FolderController.add_comment_node(center)
+    if(new_comment == null):
+        return
+    var comment_instance : TodoNode = comment.instantiate()
+    comment_instance.comment_changed.connect(_handle_comment_change)
+    print(new_comment.uuid+" new id")
+    comment_instance.model_id = new_comment.uuid
+    add_child(comment_instance)
+    comment_instance.position_offset.x = new_comment.position.x
+    comment_instance.position_offset.y = new_comment.position.y  
     pass
 
-func _get_graph_center():
+func _get_graph_center() -> Vector2:
     var screen_size = DisplayServer.window_get_size()
     var x = screen_size.x / 2 + scroll_offset.x + randi_range(-50,50)
     var y = screen_size.y / 2 + scroll_offset.y + randi_range(-50,50)
 
     return Vector2(x,y)
+
+func _handle_comment_change(id : String, n_comment : String):
+    print("changed node "+id+" to "+n_comment)
+    $FolderController.update_comment_node(id,Vector2.ZERO,comment)
+    pass

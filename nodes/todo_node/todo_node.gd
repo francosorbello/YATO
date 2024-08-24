@@ -8,6 +8,7 @@ enum NodeTypes
 }
 
 @export var node_type : NodeTypes
+var model_id : String
 
 func _ready() -> void:
     pass

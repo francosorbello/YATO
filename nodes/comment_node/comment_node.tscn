@@ -23,3 +23,5 @@ node_type = 1
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Add comment here"
+
+[connection signal="focus_exited" from="TextEdit" to="." method="_on_text_edit_focus_exited"]
