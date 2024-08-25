@@ -99,3 +99,5 @@ func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
 func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
     get_node("%ConnectionController").handle_disconnect_request(self,from_node,from_port,to_node,to_port)
 
+func _on_return_button_return_to_folder(id:String) -> void:
+    $Views/FolderView.on_folder_open(id)

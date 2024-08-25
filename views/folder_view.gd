@@ -18,13 +18,13 @@ func add_folder_to_view(new_folder : FolderModel):
     folder_node.model_id = new_folder.uuid
     if new_folder.title != "":
         folder_node.set_new_title(new_folder.title)
-    folder_node.open_folder.connect(_on_folder_open)
+    folder_node.open_folder.connect(on_folder_open)
     folder_node.moved.connect(_handle_folder_dragged)
 
     graph.add_child(folder_node)
 
 ## Called when a folder is opened from UI
-func _on_folder_open(id : String):
+func on_folder_open(id : String):
     # clear the graph
     graph.clear()
 
@@ -34,9 +34,12 @@ func _on_folder_open(id : String):
     # add folder nodes
     var folders = GlobalData.get_folder_db().get_nodes_from_folder(id)
     for folder in folders:
+        if folder.uuid == GlobalData.PARENT_FOLDER_UUID:
+            continue
         add_folder_to_view(folder)
 
     # global event
+    
     GlobalEventSystem.emit(GlobalEventSystem.GameEvent.GE_FOLDER_OPENED,{"folder_id":id})
 
 ## Called when a folder node is moved
