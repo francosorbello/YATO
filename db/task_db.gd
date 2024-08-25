@@ -21,3 +21,20 @@ func update(id : String, data : Dictionary) -> TaskModel:
         nodes[i].title = data.title
     
     return nodes[i]
+
+func save():
+    var data = ListResource.new()
+    for node : TaskModel in nodes:
+        var node_save_data = TaskSaveData.new()
+        node_save_data.uuid = node.uuid
+        node_save_data.title = node.title
+        node_save_data.position = node.position
+        node_save_data.folder_uuid = node.folder_uuid
+        data.data.append(node_save_data)
+    return data
+
+func load(tasks : ListResource):
+    for value : TaskSaveData in tasks.data:
+        var new_task = add(value.folder_uuid,{"position":value.position})
+        replace_id(new_task.uuid,value.uuid)
+        update(value.uuid,{"position":value.position,"title":value.title})

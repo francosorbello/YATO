@@ -34,7 +34,6 @@ func get_by_id(id : String) -> TodoNodeModel:
 ## Returns index of node inside of db, or -1 if it doesnt exist
 func get_node_index(id : String) -> int:
     var i : int = 0
-    print(len(nodes))
     for node in nodes:
         if node.uuid == id:
             return i

@@ -12,8 +12,8 @@ func _ready() -> void:
     get_menu_hbox().add_child(_create_node_btn("Load",_on_load))
     get_menu_hbox().add_child(_create_node_btn("Save",_on_save))
     get_menu_hbox().add_child(VSeparator.new())
-    var comment_btn = _create_node_btn("Comment",_on_comment_add)
-    get_menu_hbox().add_child(comment_btn);
+    # add buttons to create nodes
+    get_menu_hbox().add_child(_create_node_btn("Comment",_on_comment_add));
     get_menu_hbox().add_child(_create_node_btn("Folder",_on_folder_add))
     get_menu_hbox().add_child(_create_node_btn("Task",_on_task_add))
 
