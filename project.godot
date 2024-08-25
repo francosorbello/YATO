@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalData="*res://utils/global_data.tscn"
+GlobalEventSystem="*res://utils/global_event_system.gd"
 
 [rendering]
 

@@ -42,10 +42,8 @@ func get_node_index(id : String) -> int:
 
 ## Return all nodes from a folder
 func get_nodes_from_folder(folder_id : String):
-    print("hello %d"%len(nodes))
     var folder_nodes = []
     for node in nodes:
-        print("test "+node.folder_uuid+" "+"folder_id")
         if node.folder_uuid == folder_id:
             print("Found "+node.uuid)
             folder_nodes.append(node)

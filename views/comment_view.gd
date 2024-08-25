@@ -5,6 +5,9 @@ extends Node
 @export var comment : PackedScene
 @export var graph :GraphEdit
 
+func _ready() -> void:
+    GlobalEventSystem.suscribe(self,"_handle_global_events")
+
 func handle_new_comment(graph_center : Vector2):
    
     # add comment to model
@@ -31,19 +34,11 @@ func add_comment_to_view(new_comment : CommentModel):
 
     graph.add_child(comment_instance)
 
-func load_comments_from_save(comments : ListResource):
-    for comm : CommentSaveData in comments.data:
-        if comm.folder_uuid != GlobalData.current_folder_node.uuid:
-            continue
-        get_node("%CommentController").add_comment_node(comm.position,comm.uuid)
-        var updated_comm = get_node("%CommentController").update_comment_text(comm.uuid,comm.comment)
-        add_comment_to_view(updated_comm)
-
-func load_comments_from_folder(comments):
+func load_comments_from_folder(folder_id : String):
+    # Get comments from db and load them into view
+    var comments = get_node("%CommentController").get_comments_from_folder(folder_id)
     for comm in comments:
-        if comm.folder_uuid != GlobalData.current_folder_node.uuid:
-            continue
-        add_comment_to_view(comm)
+        add_comment_to_view(comm) 
 
 func _handle_comment_change(id : String, n_comment : String):
     get_node("%CommentController").update_comment_text(id,n_comment)
@@ -51,3 +46,8 @@ func _handle_comment_change(id : String, n_comment : String):
 func _handle_comment_dragged(id : String, new_pos : Vector2):
     get_node("%CommentController").update_comment_position(id,new_pos)
 
+func _handle_global_events(event, _msg : Dictionary):
+    if event == GlobalEventSystem.GameEvent.GE_LOADED:
+        # load_comments_from_save()
+        load_comments_from_folder(GlobalData.current_folder_node.uuid)
+    

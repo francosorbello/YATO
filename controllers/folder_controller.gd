@@ -14,3 +14,6 @@ func update_folder_title(id : String, n_title : String) -> FolderModel:
 
 func update_folder_position(id: String, pos :Vector2) -> FolderModel:
     return GlobalData.get_folder_db().update(id, {"position":pos})
+
+func get_nodes_from_folder(folder_id) -> Array:
+    return GlobalData.get_folder_db().get_nodes_from_folder(folder_id)

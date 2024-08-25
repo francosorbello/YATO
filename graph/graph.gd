@@ -39,14 +39,14 @@ func _on_folder_add():
 
 func _on_save():
     # GlobalData.get_comment_db().save()
-    GlobalData.get_db_manager().save()
+    get_node("%DBController").save()
 
 func _on_load():
     clear()
-    var project = GlobalData.get_db_manager().load()
     GlobalData.current_folder_node = GlobalData.get_folder_db().add_root_folder()
-    $Views/CommentView.load_comments_from_save(project.comments)
-    $Views/FolderView.load_folders_from_save(project.folders)
+    # $Views/CommentView.load_comments_from_save(project.comments)
+    # $Views/FolderView.load_folders_from_save(project.folders)
+    get_node("%DBController").load()
     pass
 
 func _get_graph_center() -> Vector2:

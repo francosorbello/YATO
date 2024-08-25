@@ -15,3 +15,6 @@ func update_comment_position(id: String, pos: Vector2):
 
 func delete_comment(id):
     return GlobalData.get_comment_db().delete(id)
+
+func get_comments_from_folder(folder_id : String) -> Array:
+    return GlobalData.get_comment_db().get_nodes_from_folder(folder_id)

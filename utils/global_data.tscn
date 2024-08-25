@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1qssa81c7cew"]
+[gd_scene load_steps=5 format=3 uid="uid://b1qssa81c7cew"]
 
 [ext_resource type="Script" path="res://db/comment_db.gd" id="1_ptphv"]
 [ext_resource type="Script" path="res://utils/GlobalData.gd" id="1_suw04"]
-[ext_resource type="Script" path="res://utils/DBManager.gd" id="2_g6k7d"]
 [ext_resource type="Script" path="res://db/folder_db.gd" id="2_qn24p"]
 [ext_resource type="Script" path="res://db/connection_db.gd" id="4_r3qbr"]
 
@@ -10,7 +9,6 @@
 script = ExtResource("1_suw04")
 
 [node name="DB" type="Node" parent="."]
-script = ExtResource("2_g6k7d")
 
 [node name="CommentDB" type="Node" parent="DB"]
 script = ExtResource("1_ptphv")

@@ -16,9 +16,6 @@ func add_root_folder():
     nodes[i].uuid = GlobalData.PARENT_FOLDER_UUID
     return nodes[i]
 
-func load():
-    pass
-
 func update(id : String, data : Dictionary) -> FolderModel:
     var i = get_node_index(id)
     print("update %d"%i)
@@ -47,3 +44,9 @@ func save():
 
         data.data.append(folder_save_data)
     return data
+
+func load(folders : ListResource):
+    for folder in folders.data:
+        var new_folder = add(folder.folder_uuid,{"position":folder.position})
+        replace_id(new_folder.uuid,folder.uuid)
+        update(folder.uuid,{"position":folder.position,"title":folder.title})

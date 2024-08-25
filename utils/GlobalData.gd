@@ -16,6 +16,3 @@ func get_folder_db() -> TodoNodeDB:
 
 func get_connection_db() -> TodoNodeDB:
     return $DB/ConnectionDB
-
-func get_db_manager():
-    return $DB

@@ -45,4 +45,5 @@ func save():
 func load(comments : ListResource):
     for value : CommentSaveData in comments.data:
         var new_comment = add(value.folder_uuid,{"position":value.position})
+        replace_id(new_comment.uuid,value.uuid)
         update(value.uuid,{"position":value.position,"comment":value.comment})
