@@ -17,7 +17,7 @@ func add(folder_id : String, data: Dictionary):
 #     else:
 #         return FAILED
 
-func update(id, data):
+func update(id, data) -> CommentModel:
     var comment_index = get_node_index(id)
     
     if comment_index == -1:
@@ -52,6 +52,5 @@ func load():
     var save_path = "res://tests/save.res"
     var data = ResourceLoader.load(save_path, "Resource") as ListResource
     for value : CommentSaveData in data.data:
-        print(value.comment)
         add(value.folder_uuid,{"position":value.position})
         update(value.uuid,{"position":value.position,"comment":value.comment})

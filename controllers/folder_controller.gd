@@ -1,7 +1,5 @@
 class_name FolderController extends Node
 
-
-
 func add_comment_node(pos : Vector2) -> CommentModel:
     var comm_node = CommentModel.new()
     comm_node.position = pos
