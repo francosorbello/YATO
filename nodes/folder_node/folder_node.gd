@@ -1,11 +1,14 @@
 extends GraphNode
 
+signal open_folder(id : String)
+signal title_changed(new_title : String)
+var folder_id : String
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _on_button_pressed() -> void:
+	open_folder.emit(folder_id)
 
+func set_new_title(_title : String):
+	$LineEdit.text = _title
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_line_edit_focus_exited() -> void:
+	title_changed.emit($LineEdit.text)
