@@ -12,7 +12,7 @@ func handle_new_comment(graph_center : Vector2):
    
     # add comment to model
     var center = graph_center
-    var new_comment = get_node("%CommentController").add_comment_node(center)
+    var new_comment = get_node("%CommentController").add_comment(center)
    
     if(new_comment == null):
         return
@@ -36,7 +36,7 @@ func add_comment_to_view(new_comment : CommentModel):
 
 func load_comments_from_folder(folder_id : String):
     # Get comments from db and load them into view
-    var comments = get_node("%CommentController").get_comments_from_folder(folder_id)
+    var comments = get_node("%CommentController").get_nodes_from_folder(folder_id)
     for comm in comments:
         add_comment_to_view(comm) 
 

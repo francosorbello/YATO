@@ -1,10 +1,19 @@
 extends Node
 ## Manages db operations, like saving and loading
 
+var comment_db
+var folder_db
+var connection_db
+var task_db
+
+func _ready() -> void:
+    comment_db = GlobalData.get_comment_db()
+    folder_db = GlobalData.get_folder_db()
+
 ## Save the project
 func save():
-    var comments = GlobalData.get_comment_db().save()
-    var folders = GlobalData.get_folder_db().save()
+    var comments = comment_db.save()
+    var folders = folder_db.save()
 
     var project_save_file = ProjectSaveData.new()
     project_save_file.comments = comments
@@ -17,15 +26,15 @@ func save():
     GlobalEventSystem.emit(GlobalEventSystem.GameEvent.GE_SAVED)
 
 ## Load a project
-func load():
+func load() -> ProjectSaveData:
     # clear databases 
-    GlobalData.get_comment_db().clear()
-    GlobalData.get_folder_db().clear()
+    comment_db.clear()
+    folder_db.clear()
 
     # load databases with data from save
     var project = ResourceLoader.load(GlobalData.save_path) as ProjectSaveData
-    GlobalData.get_comment_db().load(project.comments)
-    GlobalData.get_folder_db().load(project.folders)
+    comment_db.load(project.comments)
+    folder_db.load(project.folders)
 
     # global event so the ui updates
     GlobalEventSystem.emit(GlobalEventSystem.GameEvent.GE_LOADED,{"project":project})
