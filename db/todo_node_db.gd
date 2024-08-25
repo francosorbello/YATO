@@ -8,6 +8,7 @@ var nodes : Array[TodoNodeModel]
 func add(_folder_id : String, _data : Dictionary) -> TodoNodeModel:
     return null
 
+## Replace the id of a node with a new one
 func replace_id(old_id: String, new_id : String) -> TodoNodeModel:
     var i = get_node_index(old_id)
     nodes[i].uuid = new_id

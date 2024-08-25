@@ -1,7 +1,6 @@
 extends TodoNodeDB
 
 func add(folder_id : String, data: Dictionary):
-    
     var new_connection = ConnectionModel.new()
     new_connection.folder_uuid = folder_id
     var err = verify_data(data)
@@ -19,7 +18,7 @@ func verify_data(_data : Dictionary) -> Error:
 
 func delete(id : String):
     var new_nodes = nodes.filter(func(item : ConnectionModel): return item.from_node_id != id and item.to_node_id != id)
-    pass
+    nodes = new_nodes
 
 func delete_from_disconnect(from_id, to_id):
     var i = 0

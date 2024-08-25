@@ -18,7 +18,6 @@ func add_root_folder():
 
 func update(id : String, data : Dictionary) -> FolderModel:
     var i = get_node_index(id)
-    print("update %d"%i)
     if i == -1:
         return null
     

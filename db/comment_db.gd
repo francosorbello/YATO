@@ -6,16 +6,8 @@ func add(folder_id : String, data: Dictionary):
     var err = verify_data(data)
     if(err == OK):
         new_comment.position = data.position
-    # else:
-    #     push_warning("Position missing when adding "+new_comment.uuid)
     nodes.append(new_comment)
     return new_comment
-
-# func verify_data(data : Dictionary) -> Error:
-#     if data.has("comment"):
-#         return OK
-#     else:
-#         return FAILED
 
 func update(id, data) -> CommentModel:
     var comment_index = get_node_index(id)
