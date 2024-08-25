@@ -1,15 +1,16 @@
-class_name FolderController extends Node
+extends Node
 
-func add_comment_node(pos : Vector2) -> CommentModel:
-    var comm_node = CommentModel.new()
-    comm_node.position = pos
-    
-    return GlobalData.current_folder_node.add_todo_node(comm_node)
+func add_folder(pos : Vector2, new_id : String = "") -> FolderModel:
+    var folder_db = GlobalData.get_folder_db()
+    var folder = folder_db.add(GlobalData.current_folder_node.uuid,{"position": pos})
+    if new_id != "":
+        print("replace with id "+new_id)
+        folder = folder_db.replace_id(folder.uuid,new_id)
 
-func update_comment_node(id: String, pos: Vector2, comment : String):
-    var comm_node = GlobalData.current_folder_node.get_node_by_id(id)
-    comm_node.position = pos
-    comm_node.comment = comment
-    pass
+    return folder
 
-# func delete_c
+func update_folder_title(id : String, n_title : String) -> FolderModel:
+    return GlobalData.get_folder_db().update(id, {"title":n_title})
+
+func update_folder_position(id: String, pos :Vector2) -> FolderModel:
+    return GlobalData.get_folder_db().update(id, {"position":pos})

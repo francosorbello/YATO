@@ -19,10 +19,3 @@ func save():
 
 func load():
     pass
-
-func to_json():
-    var data = {
-        "x": position.x,
-        "y": position.y,
-
-    }

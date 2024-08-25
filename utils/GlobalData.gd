@@ -2,7 +2,7 @@ extends Node
 
 const PARENT_FOLDER_UUID : String = "0"
 var current_folder_node : FolderModel
-
+var save_path = "res://tests/save.res"
 
 func _ready():
     if current_folder_node == null:
@@ -16,3 +16,6 @@ func get_folder_db() -> TodoNodeDB:
 
 func get_connection_db() -> TodoNodeDB:
     return $DB/ConnectionDB
+
+func get_db_manager():
+    return $DB

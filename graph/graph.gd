@@ -38,12 +38,15 @@ func _on_folder_add():
     pass
 
 func _on_save():
-    GlobalData.get_comment_db().save()
+    # GlobalData.get_comment_db().save()
+    GlobalData.get_db_manager().save()
 
 func _on_load():
-    var save_path = "res://tests/save.res"
-    var data = ResourceLoader.load(save_path, "Resource") as ListResource
-    $Views/CommentView.load_comments(data)
+    clear()
+    var project = GlobalData.get_db_manager().load()
+    GlobalData.current_folder_node = GlobalData.get_folder_db().add_root_folder()
+    $Views/CommentView.load_comments_from_save(project.comments)
+    $Views/FolderView.load_folders_from_save(project.folders)
     pass
 
 func _get_graph_center() -> Vector2:
@@ -69,3 +72,8 @@ func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
 
 func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
     get_node("%ConnectionController").handle_disconnect_request(self,from_node,from_port,to_node,to_port)
+
+func clear():
+    for child in get_children():
+        if child is TodoNode:
+            child.queue_free()

@@ -32,7 +32,6 @@ func update(id, data) -> CommentModel:
     return nodes[comment_index]
 
 func save():
-    var save_path = "res://tests/save.res"
     var data = ListResource.new()
     for node : CommentModel in nodes:
         var node_save_data = CommentSaveData.new()
@@ -41,16 +40,9 @@ func save():
         node_save_data.position = node.position
         node_save_data.folder_uuid = node.folder_uuid
         data.data.append(node_save_data)
-    var err = ResourceSaver.save(data,save_path)
-    if err == OK:
-        print("saved sucess")
-    else:
-        push_error("Error saving")
-    pass
+    return data
 
-func load():
-    var save_path = "res://tests/save.res"
-    var data = ResourceLoader.load(save_path, "Resource") as ListResource
-    for value : CommentSaveData in data.data:
-        add(value.folder_uuid,{"position":value.position})
+func load(comments : ListResource):
+    for value : CommentSaveData in comments.data:
+        var new_comment = add(value.folder_uuid,{"position":value.position})
         update(value.uuid,{"position":value.position,"comment":value.comment})

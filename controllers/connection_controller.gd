@@ -20,7 +20,6 @@ func handle_connection_request(graph : GraphEdit, from_node:StringName, from_por
         "to_node_id" : to_node_id,
         "to_port": to_port
     }
-    print("add connection")
     var connection = GlobalData.get_connection_db().add(GlobalData.current_folder_node.uuid,data)
     if connection != null:
         graph.connect_node(from_node,from_port,to_node,to_port);

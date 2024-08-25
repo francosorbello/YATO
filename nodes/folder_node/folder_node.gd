@@ -1,11 +1,10 @@
-extends GraphNode
+extends TodoNode
 
 signal open_folder(id : String)
 signal title_changed(new_title : String)
-var folder_id : String
 
 func _on_button_pressed() -> void:
-	open_folder.emit(folder_id)
+	open_folder.emit(model_id)
 
 func set_new_title(_title : String):
 	$LineEdit.text = _title

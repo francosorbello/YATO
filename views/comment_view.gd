@@ -9,7 +9,6 @@ func handle_new_comment(graph_center : Vector2):
    
     # add comment to model
     var center = graph_center
-    print(center)
     var new_comment = get_node("%CommentController").add_comment_node(center)
    
     if(new_comment == null):
@@ -21,7 +20,6 @@ func handle_new_comment(graph_center : Vector2):
 func add_comment_to_view(new_comment : CommentModel):
 # instantiate comment
     var comment_instance : TodoNode = comment.instantiate()
-    print(new_comment)
     comment_instance.comment_changed.connect(_handle_comment_change)
     comment_instance.moved.connect(_handle_comment_dragged)
 
@@ -33,12 +31,20 @@ func add_comment_to_view(new_comment : CommentModel):
 
     graph.add_child(comment_instance)
 
-func load_comments(comments : ListResource):
+func load_comments_from_save(comments : ListResource):
     for comm : CommentSaveData in comments.data:
-        var added_comm = get_node("%CommentController").add_comment_node(comm.position,comm.uuid)
+        if comm.folder_uuid != GlobalData.current_folder_node.uuid:
+            continue
+        get_node("%CommentController").add_comment_node(comm.position,comm.uuid)
         var updated_comm = get_node("%CommentController").update_comment_text(comm.uuid,comm.comment)
         add_comment_to_view(updated_comm)
-  
+
+func load_comments_from_folder(comments):
+    for comm in comments:
+        if comm.folder_uuid != GlobalData.current_folder_node.uuid:
+            continue
+        add_comment_to_view(comm)
+
 func _handle_comment_change(id : String, n_comment : String):
     get_node("%CommentController").update_comment_text(id,n_comment)
 
