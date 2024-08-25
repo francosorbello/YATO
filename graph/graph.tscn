@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://o6rnfxiau175"]
+[gd_scene load_steps=14 format=3 uid="uid://o6rnfxiau175"]
 
 [ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
 [ext_resource type="PackedScene" uid="uid://b4tfya1rintqc" path="res://nodes/comment_node/comment_node.tscn" id="2_yjuuj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://controllers/connection_controller.gd" id="5_ku40f"]
 [ext_resource type="Script" path="res://views/comment_view.gd" id="5_r8306"]
 [ext_resource type="Script" path="res://controllers/db_controller.gd" id="6_ipw3w"]
+[ext_resource type="Script" path="res://controllers/task_controller.gd" id="6_yi637"]
 [ext_resource type="Script" path="res://views/folder_view.gd" id="7_4ili2"]
 [ext_resource type="PackedScene" uid="uid://b58v5o1f1jiti" path="res://nodes/folder_node/folder_node.tscn" id="8_sq65o"]
 [ext_resource type="Script" path="res://views/connection_view.gd" id="10_0i1fu"]
@@ -39,6 +40,10 @@ script = ExtResource("5_ku40f")
 [node name="DBController" type="Node" parent="Controllers"]
 unique_name_in_owner = true
 script = ExtResource("6_ipw3w")
+
+[node name="TaskController" type="Node" parent="Controllers"]
+unique_name_in_owner = true
+script = ExtResource("6_yi637")
 
 [node name="Views" type="Node" parent="."]
 

@@ -15,6 +15,7 @@ func _ready() -> void:
     var comment_btn = _create_node_btn("Comment",_on_comment_add)
     get_menu_hbox().add_child(comment_btn);
     get_menu_hbox().add_child(_create_node_btn("Folder",_on_folder_add))
+    get_menu_hbox().add_child(_create_node_btn("Task",_on_task_add))
 
     # add valid connections
     add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
@@ -44,6 +45,9 @@ func _on_comment_add():
 func _on_folder_add():
     $Views/FolderView.handle_new_folder(_get_graph_center())
 
+func _on_task_add():
+    $Views/TaskView.handle_new_task(_get_graph_center())
+
 ## called when saving
 func _on_save():
     get_node("%DBController").save()
@@ -71,9 +75,17 @@ func _handle_comment_change(id : String, n_comment : String):
 func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
     for child in get_children():
         if child is TodoNode and nodes.has(child.name):
-            get_node("%CommentController").delete_comment(child.model_id)
-            get_node("%ConnectionController").delete_connections(child.model_id)
-            child.queue_free()
+            if child.node_type == NodeTypes.NT_COMMENT:
+                get_node("%CommentController").delete_comment(child.model_id)
+                get_node("%ConnectionController").delete_connections(child.model_id)
+                child.queue_free()
+            
+            if child.node_type == NodeTypes.NT_FOLDER:
+                # TODO: implement this
+                pass
+            if child.node_type == NodeTypes.NT_TASK:
+                get_node("%TaskController").delete_task(child.model_id)
+                child.queue_free()
 
 ## called when trying to disconnect nodes
 func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
