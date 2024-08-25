@@ -15,6 +15,7 @@ func _ready() -> void:
     get_menu_hbox().add_child(VSeparator.new())
     var comment_btn = _create_node_btn("Comment",_on_comment_add)
     get_menu_hbox().add_child(comment_btn);
+    get_menu_hbox().add_child(_create_node_btn("Folder",_on_folder_add))
 
     add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
 
@@ -30,7 +31,11 @@ func _create_node_btn(title : String, handler) -> Button:
     return btn
 
 func _on_comment_add():
-    $Views/CommentView.handle_new_comment(_get_graph_center(),self)
+    $Views/CommentView.handle_new_comment(_get_graph_center())
+
+func _on_folder_add():
+    $Views/FolderView.handle_new_folder(_get_graph_center())
+    pass
 
 func _on_save():
     GlobalData.get_comment_db().save()
