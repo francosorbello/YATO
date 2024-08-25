@@ -11,6 +11,7 @@ func handle_new_folder(pos : Vector2):
 
     add_folder_to_view(new_folder)
 
+## Adds a folder to the graph
 func add_folder_to_view(new_folder : FolderModel):
     var folder_node = folder_scene.instantiate()
     folder_node.position_offset = new_folder.position
@@ -22,6 +23,7 @@ func add_folder_to_view(new_folder : FolderModel):
 
     graph.add_child(folder_node)
 
+## Called when a folder is opened from UI
 func _on_folder_open(id : String):
     # clear the graph
     graph.clear()
@@ -29,29 +31,19 @@ func _on_folder_open(id : String):
     # replace current folder
     GlobalData.current_folder_node = GlobalData.get_folder_db().get_by_id(id)
 
-    # add comment nodes
-    var comments = GlobalData.get_comment_db().get_nodes_from_folder(id)
-    for comment in comments:
-        get_parent().get_node("CommentView").add_comment_to_view(comment)
-
+    # add folder nodes
     var folders = GlobalData.get_folder_db().get_nodes_from_folder(id)
     for folder in folders:
         add_folder_to_view(folder)
 
-    
-func load_folders_from_save(folders : ListResource):
-    for folder : FolderSaveData in folders.data:
-        if folder.folder_uuid != GlobalData.current_folder_node.uuid:
-            continue
-        
-        get_node("%FolderController").add_folder(folder.position, folder.uuid)
-        var updated_folder = get_node("%FolderController").update_folder_title(folder.uuid,folder.title)
+    # global event
+    GlobalEventSystem.emit(GlobalEventSystem.GameEvent.GE_FOLDER_OPENED,{"folder_id":id})
 
-        add_folder_to_view(updated_folder)
-
+## Called when a folder node is moved
 func _handle_folder_dragged(id : String, new_pos : Vector2):
     get_node("%FolderController").update_folder_position(id, new_pos)
 
+## Loads folder nodes belonging to another folder
 func load_nodes_from_folder(folder_id):
     var folders = get_node("%FolderController").get_nodes_from_folder(folder_id)
     for folder in folders:

@@ -3,7 +3,8 @@ extends Node
 enum GameEvent
 {
     GE_SAVED,
-    GE_LOADED
+    GE_LOADED,
+    GE_FOLDER_OPENED
 }
 
 class GESuscriber:

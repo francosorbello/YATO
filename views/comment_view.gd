@@ -8,6 +8,7 @@ extends Node
 func _ready() -> void:
     GlobalEventSystem.suscribe(self,"_handle_global_events")
 
+## Called when adding a new comment from UI
 func handle_new_comment(graph_center : Vector2):
    
     # add comment to model
@@ -18,8 +19,8 @@ func handle_new_comment(graph_center : Vector2):
         return
 
     add_comment_to_view(new_comment)
-    
 
+## Adds a comment to the view, based on their model
 func add_comment_to_view(new_comment : CommentModel):
 # instantiate comment
     var comment_instance : TodoNode = comment.instantiate()
@@ -34,20 +35,27 @@ func add_comment_to_view(new_comment : CommentModel):
 
     graph.add_child(comment_instance)
 
-func load_comments_from_folder(folder_id : String):
-    # Get comments from db and load them into view
+
+## Get comments from db and load them into view
+func load_nodes_from_folder(folder_id : String):
     var comments = get_node("%CommentController").get_nodes_from_folder(folder_id)
     for comm in comments:
         add_comment_to_view(comm) 
 
+## Called when a comment changes their text
 func _handle_comment_change(id : String, n_comment : String):
     get_node("%CommentController").update_comment_text(id,n_comment)
 
+## Called when a comment is dragged
 func _handle_comment_dragged(id : String, new_pos : Vector2):
     get_node("%CommentController").update_comment_position(id,new_pos)
 
+## Event system callback
 func _handle_global_events(event, _msg : Dictionary):
     if event == GlobalEventSystem.GameEvent.GE_LOADED:
         # load_comments_from_save()
-        load_comments_from_folder(GlobalData.current_folder_node.uuid)
+        load_nodes_from_folder(GlobalData.current_folder_node.uuid)
+    
+    if event == GlobalEventSystem.GameEvent.GE_FOLDER_OPENED:
+        load_nodes_from_folder(_msg.folder_id)
     
