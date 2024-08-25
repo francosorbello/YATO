@@ -74,7 +74,6 @@ func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
             get_node("%CommentController").delete_comment(child.model_id)
             get_node("%ConnectionController").delete_connections(child.model_id)
             child.queue_free()
-    pass # Replace with function body.
 
 ## called when trying to disconnect nodes
 func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
