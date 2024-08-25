@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://28n3tog23le"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bxkv"]
+bg_color = Color(0.556863, 0.792157, 0.901961, 1)
+
+[resource]
+GraphNode/styles/panel = null
+GraphNode/styles/titlebar = SubResource("StyleBoxFlat_6bxkv")
+GraphNode/styles/titlebar_selected = null

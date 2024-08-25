@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dett4kqrj4kpd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36nmo"]
+
+[sub_resource type="GDScript" id="GDScript_l1djs"]
+
+[resource]
+/colors/border_color = Color(0.576337, 0.373499, 0.311358, 1)
+Button/colors/button_color = Color(0.847721, 0.379133, 3.85046e-07, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_36nmo")
+script = SubResource("GDScript_l1djs")

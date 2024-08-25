@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4tfya1rintqc"]
+[gd_scene load_steps=4 format=3 uid="uid://b4tfya1rintqc"]
 
 [ext_resource type="Script" path="res://nodes/comment_node/comment_node.gd" id="1_k4yig"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7glu"]
+bg_color = Color(0.737255, 0.423529, 0.145098, 1)
+
+[sub_resource type="Theme" id="Theme_cvwyq"]
+GraphNode/styles/panel = null
+GraphNode/styles/titlebar = SubResource("StyleBoxFlat_y7glu")
+GraphNode/styles/titlebar_selected = null
 
 [node name="CommentNode" type="GraphNode"]
 offset_right = 218.0
 offset_bottom = 129.0
+theme = SubResource("Theme_cvwyq")
 resizable = true
 title = "Comment"
 slot/0/left_enabled = true

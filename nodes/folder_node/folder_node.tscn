@@ -1,11 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://b58v5o1f1jiti"]
+[gd_scene load_steps=4 format=3 uid="uid://b58v5o1f1jiti"]
 
 [ext_resource type="Script" path="res://nodes/folder_node/folder_node.gd" id="1_jthlk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxjxp"]
+bg_color = Color(0.345098, 0.505882, 0.341176, 1)
+
+[sub_resource type="Theme" id="Theme_wdhaj"]
+GraphNode/styles/panel = null
+GraphNode/styles/titlebar = SubResource("StyleBoxFlat_dxjxp")
+GraphNode/styles/titlebar_selected = null
 
 [node name="FolderNode" type="GraphNode"]
 offset_right = 150.0
 offset_bottom = 150.0
 mouse_filter = 1
+theme = SubResource("Theme_wdhaj")
 resizable = true
 slot/0/left_enabled = false
 slot/0/left_type = 0
