@@ -46,7 +46,6 @@ func get_nodes_from_folder(folder_id : String):
     var folder_nodes = []
     for node in nodes:
         if node.folder_uuid == folder_id:
-            print("Found "+node.uuid)
             folder_nodes.append(node)
     
     return folder_nodes

@@ -45,3 +45,6 @@ func handle_disconnect_request(graph : GraphEdit, from_node:StringName, from_por
     var err = GlobalData.get_connection_db().delete_from_disconnect(from_node_id,to_node_id)
     if err == OK:
         graph.disconnect_node(from_node,from_port,to_node,to_port)
+
+func get_nodes_from_folder(folder_id : String) -> Array:
+    return GlobalData.get_connection_db().get_nodes_from_folder(folder_id)

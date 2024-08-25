@@ -27,3 +27,29 @@ func delete_from_disconnect(from_id, to_id):
             nodes.remove_at(i)
             return OK
     return FAILED
+
+func save() -> ListResource:
+    var data = ListResource.new()
+    for node : ConnectionModel in nodes:
+        var save_data = ConnectionSaveData.new()
+        save_data.from_node_id = node.from_node_id
+        save_data.from_port = node.from_port
+        save_data.to_node_id = node.to_node_id
+        save_data.to_port = node.to_port
+        save_data.folder_uuid = node.folder_uuid
+        save_data.uuid = node.uuid
+        data.data.append(save_data)
+    return data
+
+func load(connections : ListResource):
+    for connection : ConnectionSaveData in connections.data:
+        var params = {
+            "from_node_id" : connection.from_node_id,
+            "from_port" : connection.from_port,
+            "to_node_id" : connection.to_node_id,
+            "to_port" : connection.to_port
+        }
+        var new_conn = add(connection.folder_uuid,params)
+        replace_id(new_conn.uuid,connection.uuid)
+
+    

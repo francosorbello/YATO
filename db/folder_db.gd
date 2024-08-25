@@ -22,7 +22,6 @@ func update(id : String, data : Dictionary) -> FolderModel:
         return null
     
     if data.has("position"):
-        print(data.position)
         nodes[i].position = data.position
     
     if data.has("title"):
