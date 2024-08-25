@@ -7,9 +7,8 @@ enum NodeTypes
     NT_TASK
 }
 
-@export var comment : PackedScene
-
 func _ready() -> void:
+    # add buttons to menu bar
     get_menu_hbox().add_child(_create_node_btn("Load",_on_load))
     get_menu_hbox().add_child(_create_node_btn("Save",_on_save))
     get_menu_hbox().add_child(VSeparator.new())
@@ -17,50 +16,58 @@ func _ready() -> void:
     get_menu_hbox().add_child(comment_btn);
     get_menu_hbox().add_child(_create_node_btn("Folder",_on_folder_add))
 
+    # add valid connections
     add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
 
-func _on_connection_request(from_node:StringName, from_port:int, to_node:StringName, to_port:int) -> void:
-    # connect_node(from_node,from_port,to_node,to_port);
-    $"%ConnectionController".handle_connection_request(self,from_node,from_port,to_node,to_port)
-    pass # Replace with function body.
+## Clear all nodes from view
+func clear():
+    for child in get_children():
+        if child is TodoNode:
+            child.queue_free()
 
+## Called when a connection between 2 nodes is requested
+func _on_connection_request(from_node:StringName, from_port:int, to_node:StringName, to_port:int) -> void:
+    $"%ConnectionController".handle_connection_request(self,from_node,from_port,to_node,to_port)
+
+## Creates a button and connects it to a function
 func _create_node_btn(title : String, handler) -> Button:
     var btn = Button.new()
     btn.text = title
     btn.pressed.connect(handler)
     return btn
 
+## called when adding a comment to the view
 func _on_comment_add():
     $Views/CommentView.handle_new_comment(_get_graph_center())
 
+## called when adding a folder to the view
 func _on_folder_add():
     $Views/FolderView.handle_new_folder(_get_graph_center())
-    pass
 
+## called when saving
 func _on_save():
-    # GlobalData.get_comment_db().save()
     get_node("%DBController").save()
 
+## called when loading
 func _on_load():
     clear()
     GlobalData.current_folder_node = GlobalData.get_folder_db().add_root_folder()
-    # $Views/CommentView.load_comments_from_save(project.comments)
-    # $Views/FolderView.load_folders_from_save(project.folders)
     get_node("%DBController").load()
-    pass
 
+## Center of the graph
 func _get_graph_center() -> Vector2:
     var screen_size = DisplayServer.window_get_size()
-    var x = screen_size.x / 2 + scroll_offset.x + randi_range(-50,50)
-    var y = screen_size.y / 2 + scroll_offset.y + randi_range(-50,50)
+    var x = screen_size.x / 2 - scroll_offset.x + randi_range(-50,50)
+    var y = screen_size.y / 2 - scroll_offset.y + randi_range(-50,50)
 
     return Vector2(x,y)
 
+## Called when a comment changes its text
 func _handle_comment_change(id : String, n_comment : String):
-    print("changed node "+id+" to "+n_comment)
-    $FolderController.update_comment_node(id,Vector2.ZERO,comment)
+    $FolderController.update_comment_node(id,Vector2.ZERO,n_comment)
     pass
 
+## Called when trying to delete nodes
 func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
     for child in get_children():
         if child is TodoNode and nodes.has(child.name):
@@ -69,11 +76,7 @@ func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
             child.queue_free()
     pass # Replace with function body.
 
-
+## called when trying to disconnect nodes
 func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
     get_node("%ConnectionController").handle_disconnect_request(self,from_node,from_port,to_node,to_port)
 
-func clear():
-    for child in get_children():
-        if child is TodoNode:
-            child.queue_free()
