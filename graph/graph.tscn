@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://o6rnfxiau175"]
+[gd_scene load_steps=13 format=3 uid="uid://o6rnfxiau175"]
 
 [ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
 [ext_resource type="PackedScene" uid="uid://b4tfya1rintqc" path="res://nodes/comment_node/comment_node.tscn" id="2_yjuuj"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://views/folder_view.gd" id="7_4ili2"]
 [ext_resource type="PackedScene" uid="uid://b58v5o1f1jiti" path="res://nodes/folder_node/folder_node.tscn" id="8_sq65o"]
 [ext_resource type="Script" path="res://views/connection_view.gd" id="10_0i1fu"]
+[ext_resource type="Script" path="res://views/task_view.gd" id="11_eibjs"]
+[ext_resource type="PackedScene" uid="uid://dceugauyqid5w" path="res://nodes/task_node/task_node.tscn" id="12_nkwif"]
 
 [node name="Graph" type="GraphEdit"]
 anchors_preset = 15
@@ -52,6 +54,11 @@ graph = NodePath("../..")
 
 [node name="ConnectionView" type="Node" parent="Views" node_paths=PackedStringArray("graph")]
 script = ExtResource("10_0i1fu")
+graph = NodePath("../..")
+
+[node name="TaskView" type="Node" parent="Views" node_paths=PackedStringArray("graph")]
+script = ExtResource("11_eibjs")
+task_scene = ExtResource("12_nkwif")
 graph = NodePath("../..")
 
 [connection signal="connection_request" from="." to="." method="_on_connection_request"]
