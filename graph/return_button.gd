@@ -29,6 +29,3 @@ func _on_pressed() -> void:
 
 func _process(_delta: float) -> void:
     disabled = len(folder_queue) <= 0
-    print(len(folder_queue))
-    # print(disabled)
-    pass
