@@ -12,6 +12,24 @@ func _ready() -> void:
     connection_db = GlobalData.get_connection_db()
     task_db = GlobalData.get_task_db()
 
+func delete_folder(id : String) -> FolderModel:
+    var deleted_folder = folder_db.delete(id)
+    task_db.delete_from_folder(id)
+    comment_db.delete_from_folder(id)
+    connection_db.delete_from_folder(id)
+    folder_db.delete_from_folder(id)
+    
+    return deleted_folder
+
+func delete_all_from_folder(id : String):
+    # for a folder inside a folder, delete all inside
+    var child_folders = folder_db.get_nodes_from_folder(id)
+    if(child_folders.size() > 0):
+        for folder in child_folders:
+            delete_all_from_folder(folder.uuid)
+
+    delete_folder(id)
+
 ## Save the project
 func save():
     var comments = comment_db.save()
@@ -34,10 +52,7 @@ func save():
 ## Load a project
 func load() -> ProjectSaveData:
     # clear databases 
-    comment_db.clear()
-    folder_db.clear()
-    task_db.clear()
-    connection_db.clear()
+    clear()
 
     # load databases with data from save
     var project = ResourceLoader.load(GlobalData.save_path) as ProjectSaveData
@@ -49,3 +64,9 @@ func load() -> ProjectSaveData:
     # global event so the ui updates
     GlobalEventSystem.emit(GlobalEventSystem.GameEvent.GE_LOADED,{"project":project})
     return project
+
+func clear():
+    comment_db.clear()
+    folder_db.clear()
+    task_db.clear()
+    connection_db.clear()

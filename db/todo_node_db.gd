@@ -50,6 +50,12 @@ func get_nodes_from_folder(folder_id : String):
     
     return folder_nodes
 
+func delete_from_folder(folder_id : String) -> TodoNodeModel:
+    for node in nodes:
+        if node.folder_uuid == folder_id:
+            return delete(node.uuid)
+    return null
+
 func clear():
     nodes.clear()
 

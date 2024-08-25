@@ -4,7 +4,8 @@ enum GameEvent
 {
     GE_SAVED,
     GE_LOADED,
-    GE_FOLDER_OPENED
+    GE_FOLDER_OPENED,
+    GE_FOLDER_DELETED,
 }
 
 class GESuscriber:

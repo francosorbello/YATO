@@ -9,6 +9,7 @@ enum NodeTypes
 
 func _ready() -> void:
     # add buttons to menu bar
+    get_menu_hbox().add_child(_create_node_btn("New",_on_new))
     get_menu_hbox().add_child(_create_node_btn("Load",_on_load))
     get_menu_hbox().add_child(_create_node_btn("Save",_on_save))
     get_menu_hbox().add_child(VSeparator.new())
@@ -36,6 +37,11 @@ func _create_node_btn(title : String, handler) -> Button:
     btn.text = title
     btn.pressed.connect(handler)
     return btn
+
+func _on_new():
+    clear()
+    get_node("%DBController").clear()
+    GlobalData.current_folder_node = GlobalData.get_folder_db().add_root_folder()
 
 ## called when adding a comment to the view
 func _on_comment_add():
@@ -81,7 +87,9 @@ func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
                 child.queue_free()
             
             if child.node_type == NodeTypes.NT_FOLDER:
-                # TODO: implement this
+                ## Warning: note the use of db_controller instead of folder_controller
+                get_node("%DBController").delete_all_from_folder(child.model_id)
+                child.queue_free()
                 pass
             if child.node_type == NodeTypes.NT_TASK:
                 get_node("%TaskController").delete_task(child.model_id)
