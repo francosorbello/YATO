@@ -30,6 +30,12 @@ func load_nodes_from_folder(folder_id : String):
     var tasks = get_node("%TaskController").get_nodes_from_folder(folder_id)
     for task in tasks:
         add_task_to_view(task)
+        add_items_to_task(task.uuid)
+
+func add_items_to_task(task_id : String):
+    var items = get_node("%TaskItemController").get_items_for_task(task_id)
+    for item in items:
+        $TaskItemView.add_item_to_task(task_id,item)
 
 func _hande_add_item(id : String):
     $TaskItemView.handle_new_task_item(id)

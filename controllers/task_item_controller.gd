@@ -19,3 +19,7 @@ func update_task_item_title(id : String, title : String) -> TaskItemModel:
 
 func update_task_item_activated(id : String, activated : bool) -> TaskItemModel:
     return task_item_db.update(id,{"finished":activated})
+
+## Get comments inside a folder
+func get_items_for_task(task_id : String) -> Array:
+    return task_item_db.get_items_for_task(task_id)

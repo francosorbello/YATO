@@ -42,3 +42,10 @@ func load(items : ListResource):
         var new_task_item = add(value.folder_uuid,{"finished":value.finished,"title":value.title})
         replace_id(new_task_item.uuid,value.uuid)
         update(value.uuid,{"finished":value.finished,"title":value.title})
+
+func get_items_for_task(task_id : String) -> Array:
+    var items = []
+    for node in nodes:
+        if node.folder_uuid == task_id:
+            items.append(node)
+    return items
