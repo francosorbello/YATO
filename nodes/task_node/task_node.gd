@@ -9,7 +9,12 @@ func _on_add_item():
 func add_item(new_item):
     $TaskContainer.add_child(new_item)
     
-
+func delete_item(id):
+    for item in $TaskContainer.get_children():
+        if item.item_id == id:
+            item.queue_free()
+            break
+            
 func set_task_title(_title : String):
     $Title.text = _title
 

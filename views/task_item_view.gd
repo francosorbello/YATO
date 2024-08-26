@@ -32,7 +32,12 @@ func add_item_to_task(task_id : String, new_item: TaskItemModel):
                 node.add_item(task_item)
 
 func _handle_delete_item(id : String):
-    get_node("%TaskItemController").delete_task_item(id)
+    var deleted_item = get_node("%TaskItemController").delete_task_item(id)
+    for node in graph.get_children():
+        if node is TodoNode and node.model_id == deleted_item.folder_uuid:
+            node.delete_item(id)
+            return
+            
 
 func _handle_update_title(id : String, new_title : String):
     get_node("%TaskItemController").update_task_item_title(id,new_title)
