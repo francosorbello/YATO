@@ -9,7 +9,7 @@ func _on_add_item():
 func add_item(new_item):
     add_child(new_item)
     slot_count += 1	
-    set_slot(slot_count,true,0,Color.WHITE,true,0,Color.WHITE)
+    set_slot(slot_count,true,1,Color.WHITE,true,1,Color.WHITE)
     
 func delete_item(id):
     for item in $TaskContainer.get_children():

@@ -1,8 +1,10 @@
 extends Node
+## View in charge of displaying task items and managing their input
 
 @export var task_item_scene : PackedScene
 @export var graph :GraphEdit
 
+## Handles being asked for a new item
 func handle_new_task_item(task_id : String):
     # add item to db
     var new_item = get_node("%TaskItemController").add_task_item(task_id)
@@ -13,6 +15,7 @@ func handle_new_task_item(task_id : String):
     # add item to graph
     add_item_to_task(task_id,new_item)
 
+## Adds a new task item to the view
 func add_item_to_task(task_id : String, new_item: TaskItemModel):
     for node in graph.get_children():
         if node is TodoNode:
@@ -31,16 +34,17 @@ func add_item_to_task(task_id : String, new_item: TaskItemModel):
 
                 node.add_item(task_item)
 
+## handles deleting an item from a task
 func _handle_delete_item(id : String):
     var deleted_item = get_node("%TaskItemController").delete_task_item(id)
     for node in graph.get_children():
         if node is TodoNode and node.model_id == deleted_item.folder_uuid:
             node.delete_item(id)
             return
-            
-
+## handles updating the title of a item            
 func _handle_update_title(id : String, new_title : String):
     get_node("%TaskItemController").update_task_item_title(id,new_title)
 
+## handles toggling a item
 func _handle_set_activated(id: String, activated: bool):
     get_node("%TaskItemController").update_task_item_activated(id,activated)
