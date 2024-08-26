@@ -35,15 +35,6 @@ slot/2/right_type = 0
 slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
-slot/3/left_enabled = false
-slot/3/left_type = 0
-slot/3/left_color = Color(1, 1, 1, 1)
-slot/3/left_icon = null
-slot/3/right_enabled = false
-slot/3/right_type = 0
-slot/3/right_color = Color(1, 1, 1, 1)
-slot/3/right_icon = null
-slot/3/draw_stylebox = true
 script = ExtResource("1_8o5x8")
 
 [node name="Title" type="LineEdit" parent="."]
@@ -52,9 +43,6 @@ placeholder_text = "Title"
 alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="."]
-layout_mode = 2
-
-[node name="TaskContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
 [node name="AddButton" type="Button" parent="."]
