@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://chqt4rlcl1rb6"]
+
+[ext_resource type="Theme" uid="uid://dc3cf8ry67ac1" path="res://graph/node_button_theme.tres" id="1_1gk6f"]
+
+[node name="Button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_1gk6f")
+text = "Comment"
