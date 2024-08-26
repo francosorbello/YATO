@@ -19,3 +19,6 @@ func get_connection_db() -> TodoNodeDB:
 
 func get_task_db() -> TodoNodeDB:
     return $DB/TaskDB
+
+func get_task_item_db() -> TodoNodeDB:
+    return $DB/TaskItemDB

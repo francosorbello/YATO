@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1qssa81c7cew"]
+[gd_scene load_steps=7 format=3 uid="uid://b1qssa81c7cew"]
 
 [ext_resource type="Script" path="res://db/comment_db.gd" id="1_ptphv"]
 [ext_resource type="Script" path="res://utils/GlobalData.gd" id="1_suw04"]
 [ext_resource type="Script" path="res://db/folder_db.gd" id="2_qn24p"]
 [ext_resource type="Script" path="res://db/connection_db.gd" id="4_r3qbr"]
 [ext_resource type="Script" path="res://db/task_db.gd" id="5_vt87e"]
+[ext_resource type="Script" path="res://db/task_item_db.gd" id="6_1s7j3"]
 
 [node name="GlobalData" type="Node"]
 script = ExtResource("1_suw04")
@@ -22,3 +23,6 @@ script = ExtResource("4_r3qbr")
 
 [node name="TaskDB" type="Node" parent="DB"]
 script = ExtResource("5_vt87e")
+
+[node name="TaskItemDB" type="Node" parent="DB"]
+script = ExtResource("6_1s7j3")

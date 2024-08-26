@@ -14,6 +14,7 @@ func add_task_to_view(new_task : TaskModel):
         task_instance.set_task_title(new_task.title)
     task_instance.moved.connect(_handle_task_dragged)
     task_instance.on_title_changed.connect(_handle_task_change)
+    task_instance.on_add_item_requested.connect(_hande_add_item)
     
     graph.add_child(task_instance)
 
@@ -23,12 +24,16 @@ func handle_new_task(center : Vector2):
     if(new_task != null):
         add_task_to_view(new_task)
 
+
 ## Get tasks from db and load them into view
 func load_nodes_from_folder(folder_id : String):
     var tasks = get_node("%TaskController").get_nodes_from_folder(folder_id)
     for task in tasks:
         add_task_to_view(task)
 
+func _hande_add_item(id : String):
+    $TaskItemView.handle_new_task_item(id)
+    
 func _handle_task_change(id : String, n_title : String):
     get_node("%TaskController").update_task_title(id,n_title)
 

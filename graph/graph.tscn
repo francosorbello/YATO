@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://o6rnfxiau175"]
+[gd_scene load_steps=22 format=3 uid="uid://o6rnfxiau175"]
 
 [ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
 [ext_resource type="PackedScene" uid="uid://chqt4rlcl1rb6" path="res://graph/button/comment_button.tscn" id="2_ncbqv"]
@@ -14,10 +14,13 @@
 [ext_resource type="Script" path="res://views/folder_view.gd" id="7_4ili2"]
 [ext_resource type="PackedScene" uid="uid://b58v5o1f1jiti" path="res://nodes/folder_node/folder_node.tscn" id="8_sq65o"]
 [ext_resource type="Script" path="res://views/connection_view.gd" id="10_0i1fu"]
+[ext_resource type="Script" path="res://controllers/task_item_controller.gd" id="10_prkef"]
 [ext_resource type="Script" path="res://views/task_view.gd" id="11_eibjs"]
 [ext_resource type="PackedScene" uid="uid://dceugauyqid5w" path="res://nodes/task_node/task_node.tscn" id="12_nkwif"]
 [ext_resource type="Texture2D" uid="uid://caupl35yyo4u7" path="res://assets/arrowLeft.png" id="14_d148c"]
 [ext_resource type="Script" path="res://graph/return_button.gd" id="15_d6xoc"]
+[ext_resource type="Script" path="res://views/task_item_view.gd" id="18_lhnsc"]
+[ext_resource type="PackedScene" uid="uid://d1ybrpshw6lc6" path="res://nodes/task_node/task_item.tscn" id="19_ufsfu"]
 
 [node name="Graph" type="GraphEdit"]
 anchors_preset = 15
@@ -51,6 +54,10 @@ script = ExtResource("6_ipw3w")
 unique_name_in_owner = true
 script = ExtResource("6_yi637")
 
+[node name="TaskItemController" type="Node" parent="Controllers"]
+unique_name_in_owner = true
+script = ExtResource("10_prkef")
+
 [node name="Views" type="Node" parent="."]
 
 [node name="CommentView" type="Node" parent="Views" node_paths=PackedStringArray("graph")]
@@ -71,6 +78,11 @@ graph = NodePath("../..")
 script = ExtResource("11_eibjs")
 task_scene = ExtResource("12_nkwif")
 graph = NodePath("../..")
+
+[node name="TaskItemView" type="Node" parent="Views/TaskView" node_paths=PackedStringArray("graph")]
+script = ExtResource("18_lhnsc")
+task_item_scene = ExtResource("19_ufsfu")
+graph = NodePath("../../..")
 
 [node name="ReturnButton" type="Button" parent="."]
 layout_mode = 0

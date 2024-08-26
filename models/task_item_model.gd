@@ -1,9 +1,7 @@
-extends Object 
+extends TodoNodeModel  
 class_name TaskItemModel
 
-@export var uuid : String
-@export var finished : bool
-@export var title : String
+## WARNING: folder_uuid is used to store the task key
 
-func _init():
-    uuid = UUIDGenerator.generate_uuid()
+var finished : bool
+var title : String
