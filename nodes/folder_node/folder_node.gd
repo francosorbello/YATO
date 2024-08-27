@@ -10,4 +10,4 @@ func set_new_title(_title : String):
 	$LineEdit.text = _title
 
 func _on_line_edit_focus_exited() -> void:
-	title_changed.emit($LineEdit.text)
+	title_changed.emit(self.model_id,$LineEdit.text)

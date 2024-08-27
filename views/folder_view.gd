@@ -20,6 +20,7 @@ func add_folder_to_view(new_folder : FolderModel):
         folder_node.set_new_title(new_folder.title)
     folder_node.open_folder.connect(on_folder_open)
     folder_node.moved.connect(_handle_folder_dragged)
+    folder_node.title_changed.connect(_handle_folder_title_changed)
 
     graph.add_child(folder_node)
 
@@ -45,6 +46,9 @@ func on_folder_open(id : String):
 ## Called when a folder node is moved
 func _handle_folder_dragged(id : String, new_pos : Vector2):
     get_node("%FolderController").update_folder_position(id, new_pos)
+
+func _handle_folder_title_changed(id : String, new_title : String):
+    get_node("%FolderController").update_folder_title(id, new_title)
 
 ## Loads folder nodes belonging to another folder
 func load_nodes_from_folder(folder_id):
