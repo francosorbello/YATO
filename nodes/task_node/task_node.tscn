@@ -37,6 +37,7 @@ slot/2/right_color = Color(1, 1, 1, 1)
 slot/2/right_icon = null
 slot/2/draw_stylebox = true
 script = ExtResource("1_8o5x8")
+node_type = 2
 
 [node name="Title" type="LineEdit" parent="."]
 layout_mode = 2
