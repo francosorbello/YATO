@@ -103,6 +103,7 @@ layout_mode = 1
 [node name="SaveDialog" parent="." instance=ExtResource("23_i1mlu")]
 size = Vector2i(400, 400)
 visible = false
+always_on_top = false
 
 [node name="LoadDialog" type="FileDialog" parent="."]
 title = "Open a File"
@@ -110,6 +111,7 @@ initial_position = 1
 size = Vector2i(400, 400)
 ok_button_text = "Open"
 file_mode = 0
+access = 2
 filters = PackedStringArray("*.res", "*.tres")
 
 [connection signal="connection_request" from="." to="." method="_on_connection_request"]

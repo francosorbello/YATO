@@ -52,4 +52,9 @@ func load(connections : ListResource):
         var new_conn = add(connection.folder_uuid,params)
         replace_id(new_conn.uuid,connection.uuid)
 
-    
+func get_connections_from(id : String) -> Array:
+    var connected_nodes = []
+    for node : ConnectionModel in nodes:
+        if node.from_node_id == id:
+            connected_nodes.append(node)
+    return connected_nodes

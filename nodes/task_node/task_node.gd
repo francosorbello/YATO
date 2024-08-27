@@ -12,10 +12,16 @@ func add_item(new_item):
     set_slot(slot_count,true,1,Color.WHITE,true,1,Color.WHITE)
     
 func delete_item(id):
-    for item in $TaskContainer.get_children():
+    var slot_index = slot_count 
+    for item in get_children():
+        if not item is HBoxContainer:
+            continue 
         if item.item_id == id:
+            clear_slot(slot_index)
             item.queue_free()
+            slot_count -= 1
             break
+        slot_index += 1
 
 func set_task_title(_title : String):
     $Title.text = _title

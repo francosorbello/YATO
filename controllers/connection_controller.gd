@@ -48,3 +48,6 @@ func handle_disconnect_request(graph : GraphEdit, from_node:StringName, from_por
 
 func get_nodes_from_folder(folder_id : String) -> Array:
     return GlobalData.get_connection_db().get_nodes_from_folder(folder_id)
+
+func get_nodes_connected_to(id : String) -> Array:
+    return GlobalData.get_connection_db().get_nodes_connected_to(id)

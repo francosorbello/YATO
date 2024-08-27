@@ -8,6 +8,7 @@ offset_right = 149.0
 offset_bottom = 141.0
 theme = ExtResource("1_vdugd")
 resizable = true
+title = "Task"
 slot/0/left_enabled = false
 slot/0/left_type = 0
 slot/0/left_color = Color(1, 1, 1, 1)
