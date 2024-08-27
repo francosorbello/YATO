@@ -8,3 +8,5 @@ YATO presents 3 types of nodes:
 - Comments: comments allow the user to add any notes desired
 - Tasks: tasks are a list of TODOs an user can create
 
+https://github.com/user-attachments/assets/b0ef0caa-e875-4060-8b95-042e1370c92b
+
