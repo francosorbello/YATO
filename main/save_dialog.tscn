@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgvsy1d3xvtq1"]
+
+[ext_resource type="Script" path="res://main/save_dialog.gd" id="1_7tcuv"]
+
+[node name="SaveDialog" type="FileDialog"]
+initial_position = 1
+size = Vector2i(352, 300)
+visible = true
+always_on_top = true
+access = 2
+filters = PackedStringArray("*.tres", "*.res")
+script = ExtResource("1_7tcuv")

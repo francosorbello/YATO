@@ -1,12 +1,12 @@
 extends Control
 
-signal context_menu_selected(index:int)
+signal context_menu_selected(index:int, mouse_pos : Vector2)
 
 func _ready() -> void:
     visible = false
 
 func _on_item_list_item_selected(index:int) -> void:
-    context_menu_selected.emit(index)
+    context_menu_selected.emit(index,get_global_mouse_position())
     $ItemList.deselect_all()
     visible = false
 

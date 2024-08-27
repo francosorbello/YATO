@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d0c7kug7suh5k"]
+
+[node name="PopupMenu" type="PopupMenu"]
+visible = true
+unfocusable = true
+item_count = 2
+item_0/text = "Test 1"
+item_1/text = "Test 2"
+item_1/id = 1

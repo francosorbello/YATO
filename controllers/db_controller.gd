@@ -33,7 +33,7 @@ func delete_all_from_folder(id : String):
     delete_folder(id)
 
 ## Save the project
-func save():
+func save(save_path : String):
     var comments = comment_db.save()
     var folders = folder_db.save()
     var connections = connection_db.save()
@@ -47,19 +47,23 @@ func save():
     project_save_file.tasks = tasks
     project_save_file.task_items = task_items
 
-    var status = ResourceSaver.save(project_save_file,GlobalData.save_path)
+    var status = ResourceSaver.save(project_save_file,save_path)
     if status != OK:
         push_error("Error trying to save")
+        return
     
     GlobalEventSystem.emit(GlobalEventSystem.GameEvent.GE_SAVED)
 
 ## Load a project
-func load() -> ProjectSaveData:
+func load(load_path : String) -> ProjectSaveData:
     # clear databases 
     clear()
 
     # load databases with data from save
-    var project = ResourceLoader.load(GlobalData.save_path) as ProjectSaveData
+    var project = ResourceLoader.load(load_path) as ProjectSaveData
+    if project == null:
+        return null
+
     comment_db.load(project.comments)
     folder_db.load(project.folders)
     connection_db.load(project.connections)

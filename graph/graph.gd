@@ -75,13 +75,15 @@ func _on_task_add():
 
 ## called when saving
 func _on_save():
-    get_node("%DBController").save()
+    # get_node("%DBController").save()
+    $SaveDialog.show()
 
 ## called when loading
 func _on_load():
     clear()
     GlobalData.current_folder_node = GlobalData.get_folder_db().add_root_folder()
-    get_node("%DBController").load()
+    # get_node("%DBController").load()
+    $LoadDialog.show()
 
 ## Center of the graph
 func _get_graph_center() -> Vector2:
@@ -121,11 +123,20 @@ func _on_disconnection_request(from_node: StringName, from_port: int, to_node: S
 func _on_return_button_return_to_folder(id:String) -> void:
     $Views/FolderView.on_folder_open(id)
 
-func _handle_context_menu(index):
+func _handle_context_menu(index,mouse_pos):
     match index:
         0:
-            $Views/CommentView.handle_new_comment(_get_graph_center())
+            $Views/CommentView.handle_new_comment(mouse_pos)
         1:
-            $Views/FolderView.handle_new_folder(_get_graph_center())
+            $Views/FolderView.handle_new_folder(mouse_pos)
         2:
-            $Views/TaskView.handle_new_task(_get_graph_center())
+            $Views/TaskView.handle_new_task(mouse_pos)
+
+func _on_save_dialog_file_selected(path:String) -> void:
+    get_node("%DBController").save(path)
+    $SaveDialog.hide()
+
+func _on_load_dialog_file_selected(path:String) -> void:
+    get_node("%DBController").load(path)
+    $LoadDialog.hide()
+    pass # Replace with function body.
