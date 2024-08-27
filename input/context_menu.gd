@@ -6,7 +6,6 @@ func _ready() -> void:
     visible = false
 
 func _on_item_list_item_selected(index:int) -> void:
-    print("%d selected"%index)
     context_menu_selected.emit(index)
     $ItemList.deselect_all()
     visible = false
@@ -25,7 +24,6 @@ func _input(event):
             visible = false
 
 func _on_mouse_exited() -> void:
-    print("Mouse exited")
     visible = false
 
 

@@ -14,7 +14,6 @@ func _process(delta: float) -> void:
         else:
            if current_time <= time_between_clicks:
                double_click.emit() 
-               print("hasfd")
            current_time = 0
            first_click = false 
 
