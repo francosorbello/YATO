@@ -120,3 +120,12 @@ func _on_disconnection_request(from_node: StringName, from_port: int, to_node: S
 
 func _on_return_button_return_to_folder(id:String) -> void:
     $Views/FolderView.on_folder_open(id)
+
+func _handle_context_menu(index):
+    match index:
+        0:
+            $Views/CommentView.handle_new_comment(_get_graph_center())
+        1:
+            $Views/FolderView.handle_new_folder(_get_graph_center())
+        2:
+            $Views/TaskView.handle_new_task(_get_graph_center())

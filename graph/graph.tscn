@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://o6rnfxiau175"]
+[gd_scene load_steps=23 format=3 uid="uid://o6rnfxiau175"]
 
 [ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
 [ext_resource type="PackedScene" uid="uid://chqt4rlcl1rb6" path="res://graph/button/comment_button.tscn" id="2_ncbqv"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://graph/return_button.gd" id="15_d6xoc"]
 [ext_resource type="Script" path="res://views/task_item_view.gd" id="18_lhnsc"]
 [ext_resource type="PackedScene" uid="uid://d1ybrpshw6lc6" path="res://nodes/task_node/task_item.tscn" id="19_ufsfu"]
+[ext_resource type="PackedScene" uid="uid://c7gloskgxy5yu" path="res://input/context_menu.tscn" id="22_4vp4b"]
 
 [node name="Graph" type="GraphEdit"]
 anchors_preset = 15
@@ -95,8 +96,12 @@ icon = ExtResource("14_d148c")
 icon_alignment = 1
 script = ExtResource("15_d6xoc")
 
+[node name="ContextMenu" parent="." instance=ExtResource("22_4vp4b")]
+layout_mode = 1
+
 [connection signal="connection_request" from="." to="." method="_on_connection_request"]
 [connection signal="delete_nodes_request" from="." to="." method="_on_delete_nodes_request"]
 [connection signal="disconnection_request" from="." to="." method="_on_disconnection_request"]
 [connection signal="pressed" from="ReturnButton" to="ReturnButton" method="_on_pressed"]
 [connection signal="return_to_folder" from="ReturnButton" to="." method="_on_return_button_return_to_folder"]
+[connection signal="context_menu_selected" from="ContextMenu" to="." method="_handle_context_menu"]
