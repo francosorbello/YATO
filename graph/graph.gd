@@ -98,7 +98,6 @@ func _on_quick_save():
 
 ## called when loading
 func _on_load():
-    clear()
     GlobalData.current_folder_node = GlobalData.get_folder_db().add_root_folder()
     # get_node("%DBController").load()
     $LoadDialog.show()
@@ -156,6 +155,7 @@ func _on_save_dialog_file_selected(path:String) -> void:
     $SaveDialog.hide()
 
 func _on_load_dialog_file_selected(path:String) -> void:
+    clear()
     GlobalData.quick_save_path = path
     get_node("%DBController").load(path)
     $LoadDialog.hide()
