@@ -16,12 +16,13 @@ func add_folder_to_view(new_folder : FolderModel):
     var folder_node = folder_scene.instantiate()
     folder_node.position_offset = new_folder.position
     folder_node.model_id = new_folder.uuid
+    folder_node.size = new_folder.size
     if new_folder.title != "":
         folder_node.set_new_title(new_folder.title)
     folder_node.open_folder.connect(on_folder_open)
     folder_node.moved.connect(_handle_folder_dragged)
     folder_node.title_changed.connect(_handle_folder_title_changed)
-
+    folder_node.node_resized.connect(_handle_folder_resized)
     graph.add_child(folder_node)
 
 ## Called when a folder is opened from UI
@@ -60,3 +61,6 @@ func _handle_global_events(event, _msg : Dictionary):
     if event == GlobalEventSystem.GameEvent.GE_LOADED:
         # load_comments_from_save()
         load_nodes_from_folder(GlobalData.current_folder_node.uuid)
+
+func _handle_folder_resized(id : String, new_size : Vector2):
+    get_node("%FolderController").resize(id,new_size)

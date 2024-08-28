@@ -25,3 +25,6 @@ func update_folder_position(id: String, pos :Vector2) -> FolderModel:
 ## Get folders inside another folder
 func get_nodes_from_folder(folder_id) -> Array:
     return folder_db.get_nodes_from_folder(folder_id)
+
+func resize(id: String, size: Vector2) -> FolderModel:
+    return folder_db.update(id,{"size":size})

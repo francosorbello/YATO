@@ -26,7 +26,8 @@ func update(id : String, data : Dictionary) -> FolderModel:
     
     if data.has("title"):
         nodes[i].title = data.title
-
+    
+    super.update(id,data)
     return nodes[i]
 
 func save():
@@ -39,6 +40,7 @@ func save():
         folder_save_data.folder_uuid = node.folder_uuid
         folder_save_data.title = node.title
         folder_save_data.position = node.position
+        folder_save_data.size = node.size
 
         data.data.append(folder_save_data)
     return data
@@ -47,4 +49,4 @@ func load(folders : ListResource):
     for folder in folders.data:
         var new_folder = add(folder.folder_uuid,{"position":folder.position})
         replace_id(new_folder.uuid,folder.uuid)
-        update(folder.uuid,{"position":folder.position,"title":folder.title})
+        update(folder.uuid,{"position":folder.position,"title":folder.title, "size":folder.size})

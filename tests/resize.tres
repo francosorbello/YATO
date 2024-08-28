@@ -1,41 +1,41 @@
 [gd_resource type="Resource" script_class="ProjectSaveData" load_steps=10 format=3]
 
-[ext_resource type="Script" path="res://save_data/comment_save_data.gd" id="1_ku33v"]
-[ext_resource type="Script" path="res://save_data/list_resource.gd" id="2_2iawj"]
-[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="3_b4f6f"]
+[ext_resource type="Script" path="res://save_data/list_resource.gd" id="1_glihn"]
+[ext_resource type="Script" path="res://save_data/folder_save_data.gd" id="2_jvpvi"]
+[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="3_y2b5b"]
 
-[sub_resource type="Resource" id="Resource_xsfo3"]
-script = ExtResource("1_ku33v")
-comment = ""
-position = Vector2(460, 220)
-uuid = "e13df423-ea71-409f-b38e-ee57cb737cca"
+[sub_resource type="Resource" id="Resource_yil25"]
+script = ExtResource("1_glihn")
+data = []
+
+[sub_resource type="Resource" id="Resource_s8qtc"]
+script = ExtResource("1_glihn")
+data = []
+
+[sub_resource type="Resource" id="Resource_fvhyy"]
+script = ExtResource("2_jvpvi")
+title = ""
+position = Vector2(528, 304)
+uuid = "a3de320e-2672-47eb-abf8-d811bb87cd2d"
 folder_uuid = "0"
-size = Vector2(320, 280)
+size = Vector2(260, 180)
 
-[sub_resource type="Resource" id="Resource_41obl"]
-script = ExtResource("2_2iawj")
-data = [SubResource("Resource_xsfo3")]
+[sub_resource type="Resource" id="Resource_qur3u"]
+script = ExtResource("1_glihn")
+data = [SubResource("Resource_fvhyy")]
 
-[sub_resource type="Resource" id="Resource_8qb8y"]
-script = ExtResource("2_2iawj")
+[sub_resource type="Resource" id="Resource_48um7"]
+script = ExtResource("1_glihn")
 data = []
 
-[sub_resource type="Resource" id="Resource_q5h43"]
-script = ExtResource("2_2iawj")
-data = []
-
-[sub_resource type="Resource" id="Resource_3bkd4"]
-script = ExtResource("2_2iawj")
-data = []
-
-[sub_resource type="Resource" id="Resource_vyu0j"]
-script = ExtResource("2_2iawj")
+[sub_resource type="Resource" id="Resource_1wexd"]
+script = ExtResource("1_glihn")
 data = []
 
 [resource]
-script = ExtResource("3_b4f6f")
-comments = SubResource("Resource_41obl")
-folders = SubResource("Resource_q5h43")
-connections = SubResource("Resource_8qb8y")
-tasks = SubResource("Resource_vyu0j")
-task_items = SubResource("Resource_3bkd4")
+script = ExtResource("3_y2b5b")
+comments = SubResource("Resource_yil25")
+folders = SubResource("Resource_qur3u")
+connections = SubResource("Resource_s8qtc")
+tasks = SubResource("Resource_1wexd")
+task_items = SubResource("Resource_48um7")
