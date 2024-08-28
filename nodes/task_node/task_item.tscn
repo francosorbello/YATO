@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1ybrpshw6lc6"]
 
 [ext_resource type="Script" path="res://nodes/task_node/task_item.gd" id="1_efy2v"]
-[ext_resource type="Texture2D" uid="uid://clxwjimvdrif5" path="res://assets/trashcan.png" id="2_6k1sf"]
+[ext_resource type="Texture2D" uid="uid://wxxfbne646dt" path="res://assets/trashcan.png" id="2_6k1sf"]
 
 [node name="TaskItem" type="HBoxContainer"]
 offset_right = 300.0

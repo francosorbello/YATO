@@ -15,6 +15,9 @@ func _on_delete_pressed() -> void:
 
 func _on_check_box_toggled(toggled_on:bool) -> void:
     checkbox_changed.emit(item_id,toggled_on)
+    # $LineEdit.set_tex
+    var color = Color.WHITE if not toggled_on else Color.DARK_GRAY
+    $LineEdit.set("theme_override_colors/font_color",color)
     pass # Replace with function body.
 
 func set_activated(activated:bool) -> void:
