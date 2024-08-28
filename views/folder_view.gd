@@ -16,7 +16,8 @@ func add_folder_to_view(new_folder : FolderModel):
     var folder_node = folder_scene.instantiate()
     folder_node.position_offset = new_folder.position
     folder_node.model_id = new_folder.uuid
-    folder_node.size = new_folder.size
+    if new_folder.size != Vector2.ZERO:
+        folder_node.size = new_folder.size
     if new_folder.title != "":
         folder_node.set_new_title(new_folder.title)
     folder_node.open_folder.connect(on_folder_open)

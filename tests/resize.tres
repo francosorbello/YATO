@@ -1,41 +1,50 @@
-[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=10 format=3]
+[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=12 format=3]
 
-[ext_resource type="Script" path="res://save_data/list_resource.gd" id="1_glihn"]
-[ext_resource type="Script" path="res://save_data/folder_save_data.gd" id="2_jvpvi"]
-[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="3_y2b5b"]
+[ext_resource type="Script" path="res://save_data/list_resource.gd" id="1_44sdk"]
+[ext_resource type="Script" path="res://save_data/folder_save_data.gd" id="2_b0fwx"]
+[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="3_eci8f"]
+[ext_resource type="Script" path="res://save_data/task_save_data.gd" id="4_awe4a"]
 
-[sub_resource type="Resource" id="Resource_yil25"]
-script = ExtResource("1_glihn")
+[sub_resource type="Resource" id="Resource_irv8l"]
+script = ExtResource("1_44sdk")
 data = []
 
-[sub_resource type="Resource" id="Resource_s8qtc"]
-script = ExtResource("1_glihn")
+[sub_resource type="Resource" id="Resource_0upr8"]
+script = ExtResource("1_44sdk")
 data = []
 
-[sub_resource type="Resource" id="Resource_fvhyy"]
-script = ExtResource("2_jvpvi")
+[sub_resource type="Resource" id="Resource_u4ghp"]
+script = ExtResource("2_b0fwx")
 title = ""
-position = Vector2(528, 304)
-uuid = "a3de320e-2672-47eb-abf8-d811bb87cd2d"
+position = Vector2(613, 295)
+uuid = "1a231a4c-b220-45aa-8433-d5a54a40db24"
 folder_uuid = "0"
-size = Vector2(260, 180)
+size = Vector2(0, 0)
 
-[sub_resource type="Resource" id="Resource_qur3u"]
-script = ExtResource("1_glihn")
-data = [SubResource("Resource_fvhyy")]
+[sub_resource type="Resource" id="Resource_vy0xo"]
+script = ExtResource("1_44sdk")
+data = [SubResource("Resource_u4ghp")]
 
-[sub_resource type="Resource" id="Resource_48um7"]
-script = ExtResource("1_glihn")
+[sub_resource type="Resource" id="Resource_hnk3r"]
+script = ExtResource("1_44sdk")
 data = []
 
-[sub_resource type="Resource" id="Resource_1wexd"]
-script = ExtResource("1_glihn")
-data = []
+[sub_resource type="Resource" id="Resource_6vxy5"]
+script = ExtResource("4_awe4a")
+title = ""
+position = Vector2(220, 180)
+uuid = "00ee1b8e-c5b8-468d-b908-a343aad8cfd1"
+folder_uuid = "0"
+size = Vector2(320, 260)
+
+[sub_resource type="Resource" id="Resource_48h3a"]
+script = ExtResource("1_44sdk")
+data = [SubResource("Resource_6vxy5")]
 
 [resource]
-script = ExtResource("3_y2b5b")
-comments = SubResource("Resource_yil25")
-folders = SubResource("Resource_qur3u")
-connections = SubResource("Resource_s8qtc")
-tasks = SubResource("Resource_1wexd")
-task_items = SubResource("Resource_48um7")
+script = ExtResource("3_eci8f")
+comments = SubResource("Resource_irv8l")
+folders = SubResource("Resource_vy0xo")
+connections = SubResource("Resource_0upr8")
+tasks = SubResource("Resource_48h3a")
+task_items = SubResource("Resource_hnk3r")

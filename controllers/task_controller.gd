@@ -22,3 +22,6 @@ func delete_task(id) -> TaskModel:
 ## Get comments inside a folder
 func get_nodes_from_folder(folder_id : String) -> Array:
     return task_db.get_nodes_from_folder(folder_id)
+
+func resize(id: String, size: Vector2) -> TaskModel:
+    return task_db.update(id,{"size":size})

@@ -12,10 +12,13 @@ func add_task_to_view(new_task : TaskModel):
     task_instance.position_offset = new_task.position
     if (new_task.title != ""):
         task_instance.set_task_title(new_task.title)
+    if new_task.size != Vector2.ZERO:
+        task_instance.size = new_task.size
+    
     task_instance.moved.connect(_handle_task_dragged)
     task_instance.on_title_changed.connect(_handle_task_change)
     task_instance.on_add_item_requested.connect(_hande_add_item)
-    
+    task_instance.node_resized.connect(_handle_task_resized)
     graph.add_child(task_instance)
 
 func handle_new_task(center : Vector2):
@@ -52,3 +55,6 @@ func _handle_global_events(event, _msg : Dictionary):
     
     if event == GlobalEventSystem.GameEvent.GE_FOLDER_OPENED:
         load_nodes_from_folder(_msg.folder_id)
+
+func _handle_task_resized(id : String, new_size : Vector2):
+    get_node("%TaskController").resize(id,new_size)
