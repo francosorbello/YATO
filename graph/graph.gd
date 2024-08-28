@@ -8,25 +8,18 @@ enum NodeTypes
 }
 
 @export var buttons : Array[PackedScene] = []
-
-enum ButtonSelect
-{
-    DEFAULT,
-    COMMENT,
-    FOLDER,
-    TASK
-}
+@export var action_button : PackedScene
 
 func _ready() -> void:
     # add buttons to menu bar
-    get_menu_hbox().add_child(_create_node_btn("New",_on_new,ButtonSelect.DEFAULT))
-    get_menu_hbox().add_child(_create_node_btn("Load",_on_load,ButtonSelect.DEFAULT))
-    get_menu_hbox().add_child(_create_node_btn("Save",_on_save,ButtonSelect.DEFAULT))
+    get_menu_hbox().add_child(_create_node_btn("New",_on_new,GlobalData.ButtonSelect.NEW))
+    get_menu_hbox().add_child(_create_node_btn("Load",_on_load,GlobalData.ButtonSelect.LOAD))
+    get_menu_hbox().add_child(_create_node_btn("Save",_on_save,GlobalData.ButtonSelect.SAVE))
     get_menu_hbox().add_child(VSeparator.new())
     # add buttons to create nodes
-    get_menu_hbox().add_child(_create_node_btn("Comment",_on_comment_add,ButtonSelect.COMMENT));
-    get_menu_hbox().add_child(_create_node_btn("Folder",_on_folder_add,ButtonSelect.FOLDER))
-    get_menu_hbox().add_child(_create_node_btn("Task",_on_task_add,ButtonSelect.TASK))
+    get_menu_hbox().add_child(_create_node_btn("Comment",_on_comment_add,GlobalData.ButtonSelect.COMMENT));
+    get_menu_hbox().add_child(_create_node_btn("Folder",_on_folder_add,GlobalData.ButtonSelect.FOLDER))
+    get_menu_hbox().add_child(_create_node_btn("Task",_on_task_add,GlobalData.ButtonSelect.TASK))
 
     # add valid connections
     add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
@@ -42,18 +35,33 @@ func _on_connection_request(from_node:StringName, from_port:int, to_node:StringN
     $"%ConnectionController".handle_connection_request(self,from_node,from_port,to_node,to_port)
 
 ## Creates a button and connects it to a function
-func _create_node_btn(title : String, handler, type : ButtonSelect) -> Button:
+func _create_node_btn(title : String, handler, type : GlobalData.ButtonSelect) -> Button:
     var btn
+
     match type:
-        ButtonSelect.COMMENT:
+        GlobalData.ButtonSelect.COMMENT:
             btn = buttons[0].instantiate() as Button
-        ButtonSelect.FOLDER:
+        GlobalData.ButtonSelect.FOLDER:
             btn = buttons[1].instantiate() as Button
-        ButtonSelect.TASK:
+        GlobalData.ButtonSelect.TASK:
             btn = buttons[2].instantiate() as Button
+        GlobalData.ButtonSelect.NEW:
+            return _create_action_button(title,handler,type)
+        GlobalData.ButtonSelect.LOAD:
+            return _create_action_button(title,handler,type)
+        GlobalData.ButtonSelect.SAVE:
+            return _create_action_button(title,handler,type)
         _:
             btn = Button.new()
+    
     btn.text = title
+    btn.pressed.connect(handler)
+    return btn
+
+func _create_action_button(title : String, handler, type):
+    var btn = action_button.instantiate() as Button
+    btn.set_type(type)
+    btn.set_hint(title)
     btn.pressed.connect(handler)
     return btn
 

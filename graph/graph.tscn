@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://o6rnfxiau175"]
+[gd_scene load_steps=25 format=3 uid="uid://o6rnfxiau175"]
 
 [ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
 [ext_resource type="PackedScene" uid="uid://chqt4rlcl1rb6" path="res://graph/button/comment_button.tscn" id="2_ncbqv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://controllers/comment_controller.gd" id="4_qhup1"]
 [ext_resource type="Script" path="res://controllers/connection_controller.gd" id="5_ku40f"]
 [ext_resource type="Script" path="res://views/comment_view.gd" id="5_r8306"]
+[ext_resource type="PackedScene" uid="uid://bmvqtin2mfqwp" path="res://graph/button/action_button.tscn" id="5_tm4y1"]
 [ext_resource type="Script" path="res://controllers/db_controller.gd" id="6_ipw3w"]
 [ext_resource type="Script" path="res://controllers/task_controller.gd" id="6_yi637"]
 [ext_resource type="Script" path="res://views/folder_view.gd" id="7_4ili2"]
@@ -33,6 +34,7 @@ grow_vertical = 2
 right_disconnects = true
 script = ExtResource("1_wh2cp")
 buttons = Array[PackedScene]([ExtResource("2_ncbqv"), ExtResource("3_w322d"), ExtResource("4_cm37b")])
+action_button = ExtResource("5_tm4y1")
 
 [node name="Controllers" type="Node" parent="."]
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=12 format=3]
+[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=12 format=3 uid="uid://cmvomsdpk3sol"]
 
 [ext_resource type="Script" path="res://save_data/list_resource.gd" id="1_44sdk"]
 [ext_resource type="Script" path="res://save_data/folder_save_data.gd" id="2_b0fwx"]
