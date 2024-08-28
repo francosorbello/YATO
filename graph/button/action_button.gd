@@ -2,9 +2,9 @@ extends Button
 
 @export var icons : Array[Texture] = []
 
-var type : GlobalData.ButtonSelect
+var type : int
 
-func set_type(t : GlobalData.ButtonSelect):
+func set_type(t : int):
     type = t
     match type:
         GlobalData.ButtonSelect.NEW:

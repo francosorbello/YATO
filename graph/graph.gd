@@ -15,6 +15,7 @@ func _ready() -> void:
     get_menu_hbox().add_child(_create_node_btn("New",_on_new,GlobalData.ButtonSelect.NEW))
     get_menu_hbox().add_child(_create_node_btn("Load",_on_load,GlobalData.ButtonSelect.LOAD))
     get_menu_hbox().add_child(_create_node_btn("Save",_on_save,GlobalData.ButtonSelect.SAVE))
+    get_menu_hbox().add_child(_create_node_btn("Quick Save",_on_quick_save,GlobalData.ButtonSelect.QUICK_SAVE))
     get_menu_hbox().add_child(VSeparator.new())
     # add buttons to create nodes
     get_menu_hbox().add_child(_create_node_btn("Comment",_on_comment_add,GlobalData.ButtonSelect.COMMENT));
@@ -35,9 +36,9 @@ func _on_connection_request(from_node:StringName, from_port:int, to_node:StringN
     $"%ConnectionController".handle_connection_request(self,from_node,from_port,to_node,to_port)
 
 ## Creates a button and connects it to a function
-func _create_node_btn(title : String, handler, type : GlobalData.ButtonSelect) -> Button:
+func _create_node_btn(title : String, handler, type : int) -> Button:
     var btn
-
+    # TODO: refactor this
     match type:
         GlobalData.ButtonSelect.COMMENT:
             btn = buttons[0].instantiate() as Button
@@ -50,6 +51,8 @@ func _create_node_btn(title : String, handler, type : GlobalData.ButtonSelect) -
         GlobalData.ButtonSelect.LOAD:
             return _create_action_button(title,handler,type)
         GlobalData.ButtonSelect.SAVE:
+            return _create_action_button(title,handler,type)
+        GlobalData.ButtonSelect.QUICK_SAVE:
             return _create_action_button(title,handler,type)
         _:
             btn = Button.new()
@@ -68,6 +71,7 @@ func _create_action_button(title : String, handler, type):
 func _on_new():
     clear()
     get_node("%DBController").clear()
+    GlobalData.quick_save_path = ""
     GlobalData.current_folder_node = GlobalData.get_folder_db().add_root_folder()
 
 ## called when adding a comment to the view
@@ -85,6 +89,12 @@ func _on_task_add():
 func _on_save():
     # get_node("%DBController").save()
     $SaveDialog.show()
+
+func _on_quick_save():
+    if (GlobalData.quick_save_path == ""):
+        _on_save()
+    else:
+        get_node("%DBController").save(GlobalData.quick_save_path)
 
 ## called when loading
 func _on_load():
@@ -146,6 +156,7 @@ func _on_save_dialog_file_selected(path:String) -> void:
     $SaveDialog.hide()
 
 func _on_load_dialog_file_selected(path:String) -> void:
+    GlobalData.quick_save_path = path
     get_node("%DBController").load(path)
     $LoadDialog.hide()
     pass # Replace with function body.

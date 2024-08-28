@@ -1,50 +1,32 @@
-[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=12 format=3 uid="uid://cmvomsdpk3sol"]
+[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=8 format=3]
 
-[ext_resource type="Script" path="res://save_data/list_resource.gd" id="1_44sdk"]
-[ext_resource type="Script" path="res://save_data/folder_save_data.gd" id="2_b0fwx"]
-[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="3_eci8f"]
-[ext_resource type="Script" path="res://save_data/task_save_data.gd" id="4_awe4a"]
+[ext_resource type="Script" path="res://save_data/list_resource.gd" id="1_cu51m"]
+[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="2_monpf"]
 
-[sub_resource type="Resource" id="Resource_irv8l"]
-script = ExtResource("1_44sdk")
+[sub_resource type="Resource" id="Resource_1k80x"]
+script = ExtResource("1_cu51m")
 data = []
 
-[sub_resource type="Resource" id="Resource_0upr8"]
-script = ExtResource("1_44sdk")
+[sub_resource type="Resource" id="Resource_sy45m"]
+script = ExtResource("1_cu51m")
 data = []
 
-[sub_resource type="Resource" id="Resource_u4ghp"]
-script = ExtResource("2_b0fwx")
-title = ""
-position = Vector2(613, 295)
-uuid = "1a231a4c-b220-45aa-8433-d5a54a40db24"
-folder_uuid = "0"
-size = Vector2(0, 0)
-
-[sub_resource type="Resource" id="Resource_vy0xo"]
-script = ExtResource("1_44sdk")
-data = [SubResource("Resource_u4ghp")]
-
-[sub_resource type="Resource" id="Resource_hnk3r"]
-script = ExtResource("1_44sdk")
+[sub_resource type="Resource" id="Resource_hdect"]
+script = ExtResource("1_cu51m")
 data = []
 
-[sub_resource type="Resource" id="Resource_6vxy5"]
-script = ExtResource("4_awe4a")
-title = ""
-position = Vector2(220, 180)
-uuid = "00ee1b8e-c5b8-468d-b908-a343aad8cfd1"
-folder_uuid = "0"
-size = Vector2(320, 260)
+[sub_resource type="Resource" id="Resource_yljyw"]
+script = ExtResource("1_cu51m")
+data = []
 
-[sub_resource type="Resource" id="Resource_48h3a"]
-script = ExtResource("1_44sdk")
-data = [SubResource("Resource_6vxy5")]
+[sub_resource type="Resource" id="Resource_fo0ru"]
+script = ExtResource("1_cu51m")
+data = []
 
 [resource]
-script = ExtResource("3_eci8f")
-comments = SubResource("Resource_irv8l")
-folders = SubResource("Resource_vy0xo")
-connections = SubResource("Resource_0upr8")
-tasks = SubResource("Resource_48h3a")
-task_items = SubResource("Resource_hnk3r")
+script = ExtResource("2_monpf")
+comments = SubResource("Resource_1k80x")
+folders = SubResource("Resource_hdect")
+connections = SubResource("Resource_sy45m")
+tasks = SubResource("Resource_fo0ru")
+task_items = SubResource("Resource_yljyw")

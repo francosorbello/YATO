@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://controllers/task_item_controller.gd" id="10_prkef"]
 [ext_resource type="Script" path="res://views/task_view.gd" id="11_eibjs"]
 [ext_resource type="PackedScene" uid="uid://dceugauyqid5w" path="res://nodes/task_node/task_node.tscn" id="12_nkwif"]
-[ext_resource type="Texture2D" uid="uid://caupl35yyo4u7" path="res://assets/arrowLeft.png" id="14_d148c"]
+[ext_resource type="Texture2D" uid="uid://dbblxuqlhi6o1" path="res://assets/arrowLeft.png" id="14_d148c"]
 [ext_resource type="Script" path="res://graph/return_button.gd" id="15_d6xoc"]
 [ext_resource type="Script" path="res://views/task_item_view.gd" id="18_lhnsc"]
 [ext_resource type="PackedScene" uid="uid://d1ybrpshw6lc6" path="res://nodes/task_node/task_item.tscn" id="19_ufsfu"]

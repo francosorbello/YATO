@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://save_data/comment_save_data.gd" id="1_pcpmq"]
+[ext_resource type="Script" path="res://save_data/list_resource.gd" id="2_jova1"]
+[ext_resource type="Script" path="res://save_data/folder_save_data.gd" id="3_fil3q"]
+[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="3_jquk0"]
+
+[sub_resource type="Resource" id="Resource_lgmhd"]
+script = ExtResource("1_pcpmq")
+comment = ""
+position = Vector2(520, 260)
+uuid = "c8f3f5e7-e984-4665-b571-cbdc69c35a3f"
+folder_uuid = "0"
+size = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_77bsb"]
+script = ExtResource("2_jova1")
+data = [SubResource("Resource_lgmhd")]
+
+[sub_resource type="Resource" id="Resource_c6mu8"]
+script = ExtResource("2_jova1")
+data = []
+
+[sub_resource type="Resource" id="Resource_2erxg"]
+script = ExtResource("3_fil3q")
+title = ""
+position = Vector2(180, 180)
+uuid = "d0e84ba3-7f95-45b5-ae3f-9afb500bb2be"
+folder_uuid = "0"
+size = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_dlv2a"]
+script = ExtResource("2_jova1")
+data = [SubResource("Resource_2erxg")]
+
+[sub_resource type="Resource" id="Resource_ucv3p"]
+script = ExtResource("2_jova1")
+data = []
+
+[sub_resource type="Resource" id="Resource_2uks5"]
+script = ExtResource("2_jova1")
+data = []
+
+[resource]
+script = ExtResource("3_jquk0")
+comments = SubResource("Resource_77bsb")
+folders = SubResource("Resource_dlv2a")
+connections = SubResource("Resource_c6mu8")
+tasks = SubResource("Resource_2uks5")
+task_items = SubResource("Resource_ucv3p")

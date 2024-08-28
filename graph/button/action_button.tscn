@@ -1,13 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmvqtin2mfqwp"]
+[gd_scene load_steps=6 format=3 uid="uid://bmvqtin2mfqwp"]
 
-[ext_resource type="Texture2D" uid="uid://cbwybd1rrn4uy" path="res://assets/plus.png" id="1_eu5dw"]
+[ext_resource type="Texture2D" uid="uid://dhf5rdpv8fxuh" path="res://assets/plus.png" id="1_eu5dw"]
 [ext_resource type="Script" path="res://graph/button/action_button.gd" id="2_3ss1a"]
-[ext_resource type="Texture2D" uid="uid://dmoh2uu63p0rp" path="res://assets/import.png" id="3_ranb0"]
-[ext_resource type="Texture2D" uid="uid://badhqxecq00e1" path="res://assets/save-medium.png" id="4_isdw6"]
-[ext_resource type="Texture2D" uid="uid://c3bbqsmhat3fe" path="res://assets/quick_save.png" id="5_1jgil"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_12yv8"]
-load_path = "res://.godot/imported/plus-small.png-116500a89071633f358ce3a55c73fdb4.ctex"
+[ext_resource type="Texture2D" uid="uid://c34d0lncnax1s" path="res://assets/import.png" id="3_ranb0"]
+[ext_resource type="Texture2D" uid="uid://cwlqar0g0g3lu" path="res://assets/save-medium.png" id="4_isdw6"]
+[ext_resource type="Texture2D" uid="uid://c6djoj8q7cvtg" path="res://assets/quick_save.png" id="5_1jgil"]
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(30, 30)
@@ -15,7 +12,6 @@ offset_right = 8.0
 offset_bottom = 8.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-icon = SubResource("CompressedTexture2D_12yv8")
 icon_alignment = 1
 script = ExtResource("2_3ss1a")
 icons = Array[Texture]([ExtResource("1_eu5dw"), ExtResource("3_ranb0"), ExtResource("4_isdw6"), ExtResource("5_1jgil")])

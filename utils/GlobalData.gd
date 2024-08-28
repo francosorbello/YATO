@@ -3,6 +3,7 @@ extends Node
 const PARENT_FOLDER_UUID : String = "0"
 var current_folder_node : FolderModel
 var save_path = "res://tests/save.res"
+var quick_save_path = ""
 
 enum ButtonSelect
 {
