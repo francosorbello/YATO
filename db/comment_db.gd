@@ -20,6 +20,8 @@ func update(id, data) -> CommentModel:
     
     if data.has("comment"):
         nodes[comment_index].comment = data.comment
+
+    super.update(id,data)
     
     return nodes[comment_index]
 
@@ -31,6 +33,7 @@ func save():
         node_save_data.comment = node.comment
         node_save_data.position = node.position
         node_save_data.folder_uuid = node.folder_uuid
+        node_save_data.size = node.size
         data.data.append(node_save_data)
     return data
 
@@ -38,4 +41,4 @@ func load(comments : ListResource):
     for value : CommentSaveData in comments.data:
         var new_comment = add(value.folder_uuid,{"position":value.position})
         replace_id(new_comment.uuid,value.uuid)
-        update(value.uuid,{"position":value.position,"comment":value.comment})
+        update(value.uuid,{"position":value.position,"comment":value.comment, "size":value.size})

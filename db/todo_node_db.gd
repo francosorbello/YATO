@@ -22,6 +22,9 @@ func delete(id: String) -> TodoNodeModel:
     return deleted_node
 
 func update(_id: String, _data : Dictionary) -> TodoNodeModel:
+    if _data.has("size"):
+        var i = get_node_index(_id)
+        nodes[i].size = _data.size
     return null
 
 ## Searches node by id. Null if it doesnt exist
@@ -62,4 +65,4 @@ func clear():
 func verify_data(data : Dictionary) -> Error:
     if data.has("position"):
         return OK
-    return FAILED 
+    return FAILED

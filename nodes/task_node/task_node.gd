@@ -2,14 +2,14 @@ extends TodoNode
 
 signal on_add_item_requested(id)
 signal on_title_changed(id, new_title)
-var slot_count = 2
+var slot_count = 1
 func _on_add_item():
     on_add_item_requested.emit(self.model_id)
 
 func add_item(new_item):
     add_child(new_item)
-    new_item.slot = slot_count - 2
-    print("Adding item to slot: ",new_item.slot)
+    move_child(new_item,get_children().size() - 2)
+    new_item.slot = slot_count - 1
     slot_count += 1
     set_slot(slot_count,true,1,Color.WHITE,true,1,Color.WHITE)
     

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://save_data/comment_save_data.gd" id="1_ku33v"]
+[ext_resource type="Script" path="res://save_data/list_resource.gd" id="2_2iawj"]
+[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="3_b4f6f"]
+
+[sub_resource type="Resource" id="Resource_xsfo3"]
+script = ExtResource("1_ku33v")
+comment = ""
+position = Vector2(460, 220)
+uuid = "e13df423-ea71-409f-b38e-ee57cb737cca"
+folder_uuid = "0"
+size = Vector2(320, 280)
+
+[sub_resource type="Resource" id="Resource_41obl"]
+script = ExtResource("2_2iawj")
+data = [SubResource("Resource_xsfo3")]
+
+[sub_resource type="Resource" id="Resource_8qb8y"]
+script = ExtResource("2_2iawj")
+data = []
+
+[sub_resource type="Resource" id="Resource_q5h43"]
+script = ExtResource("2_2iawj")
+data = []
+
+[sub_resource type="Resource" id="Resource_3bkd4"]
+script = ExtResource("2_2iawj")
+data = []
+
+[sub_resource type="Resource" id="Resource_vyu0j"]
+script = ExtResource("2_2iawj")
+data = []
+
+[resource]
+script = ExtResource("3_b4f6f")
+comments = SubResource("Resource_41obl")
+folders = SubResource("Resource_q5h43")
+connections = SubResource("Resource_8qb8y")
+tasks = SubResource("Resource_vyu0j")
+task_items = SubResource("Resource_3bkd4")

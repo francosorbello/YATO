@@ -26,12 +26,15 @@ func add_comment_to_view(new_comment : CommentModel):
     var comment_instance : TodoNode = comment.instantiate()
     comment_instance.comment_changed.connect(_handle_comment_change)
     comment_instance.moved.connect(_handle_comment_dragged)
+    comment_instance.node_resized.connect(_handle_comment_resized)
 
     comment_instance.model_id = new_comment.uuid
     if (new_comment.comment != ""):
         comment_instance.set_text(new_comment.comment)
     comment_instance.position_offset.x = new_comment.position.x
     comment_instance.position_offset.y = new_comment.position.y
+    if new_comment.size != Vector2.ZERO:
+        comment_instance.size = new_comment.size
 
     graph.add_child(comment_instance)
 
@@ -58,4 +61,7 @@ func _handle_global_events(event, _msg : Dictionary):
     
     if event == GlobalEventSystem.GameEvent.GE_FOLDER_OPENED:
         load_nodes_from_folder(_msg.folder_id)
-    
+
+func _handle_comment_resized(id : String, new_size : Vector2):
+    print("comment resized")
+    get_node("%CommentController").resize(id,new_size)

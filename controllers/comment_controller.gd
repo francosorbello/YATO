@@ -27,3 +27,6 @@ func delete_comment(id) -> CommentModel:
 ## Get comments inside a folder
 func get_nodes_from_folder(folder_id : String) -> Array:
     return comment_db.get_nodes_from_folder(folder_id)
+
+func resize(id: String, size: Vector2) -> CommentModel:
+    return comment_db.update(id,{"size":size})
