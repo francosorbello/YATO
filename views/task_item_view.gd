@@ -35,11 +35,12 @@ func add_item_to_task(task_id : String, new_item: TaskItemModel):
                 node.add_item(task_item)
 
 ## handles deleting an item from a task
-func _handle_delete_item(id : String):
+func _handle_delete_item(id : String, slot : int):
     var deleted_item = get_node("%TaskItemController").delete_task_item(id)
     for node in graph.get_children():
         if node is TodoNode and node.model_id == deleted_item.folder_uuid:
             node.delete_item(id)
+            GlobalEventSystem.emit(GlobalEventSystem.GameEvent.GE_TASK_ITEM_DELETED,{"item":deleted_item,"slot":slot})
             return
 ## handles updating the title of a item            
 func _handle_update_title(id : String, new_title : String):

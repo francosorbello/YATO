@@ -5,3 +5,4 @@ class_name TaskItemModel
 
 var finished : bool
 var title : String
+var slot : int

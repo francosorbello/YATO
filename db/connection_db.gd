@@ -58,3 +58,11 @@ func get_connections_from(id : String) -> Array:
         if node.from_node_id == id:
             connected_nodes.append(node)
     return connected_nodes
+
+## Returns a list of connections that connect from a slot in particular
+func get_nodes_connected_from(id : String, slot: int) -> Array:
+    var connected_nodes = []
+    for node : ConnectionModel in nodes:
+        if node.from_node_id == id and node.from_port == slot:
+            connected_nodes.append(node)
+    return connected_nodes

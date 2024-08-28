@@ -23,6 +23,9 @@ func update(id, data) -> TaskItemModel:
     
     if data.has("title"):
         nodes[task_item_index].title = data.title
+
+    if data.has("slot"):
+        nodes[task_item_index].slot = data.slot
     
     return nodes[task_item_index]
 

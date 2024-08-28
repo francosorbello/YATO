@@ -8,15 +8,18 @@ func _on_add_item():
 
 func add_item(new_item):
     add_child(new_item)
-    slot_count += 1	
+    new_item.slot = slot_count - 2
+    print("Adding item to slot: ",new_item.slot)
+    slot_count += 1
     set_slot(slot_count,true,1,Color.WHITE,true,1,Color.WHITE)
     
 func delete_item(id):
-    var slot_index = slot_count 
+    var slot_index = 0 
     for item in get_children():
         if not item is HBoxContainer:
             continue 
         if item.item_id == id:
+            print("Clearing slot",slot_index)
             clear_slot(slot_index)
             item.queue_free()
             slot_count -= 1
@@ -28,3 +31,8 @@ func set_task_title(_title : String):
 
 func _on_title_focus_exited() -> void:
     on_title_changed.emit(self.model_id, $Title.text)
+
+
+func _on_slot_updated(slot_index:int) -> void:
+    print("Slot updated: ",slot_index)
+    pass # Replace with function body.

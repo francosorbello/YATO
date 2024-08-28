@@ -6,6 +6,7 @@ enum GameEvent
     GE_LOADED,
     GE_FOLDER_OPENED,
     GE_FOLDER_DELETED,
+    GE_TASK_ITEM_DELETED,
 }
 
 class GESuscriber:

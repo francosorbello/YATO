@@ -31,3 +31,22 @@ func _handle_global_events(event, _msg : Dictionary):
     
     if event == GlobalEventSystem.GameEvent.GE_FOLDER_OPENED:
         load_nodes_from_folder(_msg.folder_id)
+
+    if event == GlobalEventSystem.GameEvent.GE_TASK_ITEM_DELETED:
+        _handle_deleting_task_item(_msg)
+
+func _handle_deleting_task_item(_msg : Dictionary):
+    var connections = get_node("%ConnectionController").get_nodes_connected_from(_msg.item.folder_uuid,_msg.slot)
+    for conn : ConnectionModel in connections:
+        var from_node = ""
+        var to_node = ""
+        for child in graph.get_children():
+            if child is TodoNode:
+                if child.model_id == conn.from_node_id:
+                    from_node = child.name
+                if child.model_id == conn.to_node_id:
+                    to_node = child.name
+        
+        var err = GlobalData.get_connection_db().delete_from_disconnect(conn.from_node_id,conn.to_node_id)
+        if err == OK:
+            graph.disconnect_node(from_node,conn.from_port,to_node,conn.to_port)
