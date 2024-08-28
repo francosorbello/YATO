@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://o6rnfxiau175"]
+[gd_scene load_steps=26 format=3 uid="uid://o6rnfxiau175"]
 
 [ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
 [ext_resource type="PackedScene" uid="uid://chqt4rlcl1rb6" path="res://graph/button/comment_button.tscn" id="2_ncbqv"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://d1ybrpshw6lc6" path="res://nodes/task_node/task_item.tscn" id="19_ufsfu"]
 [ext_resource type="PackedScene" uid="uid://c7gloskgxy5yu" path="res://input/context_menu.tscn" id="22_4vp4b"]
 [ext_resource type="PackedScene" uid="uid://cgvsy1d3xvtq1" path="res://main/save_dialog.tscn" id="23_i1mlu"]
+[ext_resource type="Script" path="res://input/short_cut_manager.gd" id="25_xg25c"]
 
 [node name="Graph" type="GraphEdit"]
 anchors_preset = 15
@@ -116,6 +117,9 @@ file_mode = 0
 access = 2
 filters = PackedStringArray("*.res", "*.tres")
 
+[node name="ShortCutManager" type="Node" parent="."]
+script = ExtResource("25_xg25c")
+
 [connection signal="connection_request" from="." to="." method="_on_connection_request"]
 [connection signal="delete_nodes_request" from="." to="." method="_on_delete_nodes_request"]
 [connection signal="disconnection_request" from="." to="." method="_on_disconnection_request"]
@@ -124,3 +128,4 @@ filters = PackedStringArray("*.res", "*.tres")
 [connection signal="context_menu_selected" from="ContextMenu" to="." method="_handle_context_menu"]
 [connection signal="file_selected" from="SaveDialog" to="." method="_on_save_dialog_file_selected"]
 [connection signal="file_selected" from="LoadDialog" to="." method="_on_load_dialog_file_selected"]
+[connection signal="on_quick_save" from="ShortCutManager" to="." method="_on_shortcut_manager_on_shortcut_pressed"]

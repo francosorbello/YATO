@@ -160,3 +160,7 @@ func _on_load_dialog_file_selected(path:String) -> void:
     get_node("%DBController").load(path)
     $LoadDialog.hide()
     pass # Replace with function body.
+
+func _on_shortcut_manager_on_shortcut_pressed() -> void:
+    print("hello")
+    _on_quick_save()
