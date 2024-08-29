@@ -5,7 +5,7 @@ func handle_new_code(graph_center : Vector2):
    
     # add code to model
     var center = graph_center
-    var new_code = get_node("%CodeController").add_code(center)
+    var new_code = get_node("%CodeController").add_comment(center)
    
     if(new_code == null):
         return
@@ -13,16 +13,16 @@ func handle_new_code(graph_center : Vector2):
     add_code_to_view(new_code)
 
 ## Adds a code to the view, based on their model
-func add_code_to_view(new_code : CodeModel):
+func add_code_to_view(new_code : CommentModel):
 # instantiate code
     var code_instance : TodoNode = node_scene.instantiate()
-    code_instance.code_changed.connect(_handle_code_change)
+    code_instance.comment_changed.connect(_handle_code_change)
     code_instance.moved.connect(_handle_code_dragged)
     code_instance.node_resized.connect(_handle_code_resized)
 
     code_instance.model_id = new_code.uuid
-    if (new_code.code != ""):
-        code_instance.set_text(new_code.code)
+    if (new_code.comment != ""):
+        code_instance.set_text(new_code.comment)
     code_instance.position_offset.x = new_code.position.x
     code_instance.position_offset.y = new_code.position.y
     if new_code.size != Vector2.ZERO:
@@ -39,11 +39,11 @@ func load_nodes_from_folder(folder_id : String):
 
 ## Called when a code changes their text
 func _handle_code_change(id : String, n_code : String):
-    get_node("%CodeController").update_code_text(id,n_code)
+    get_node("%CodeController").update_comment_text(id,n_code)
 
 ## Called when a code is dragged
 func _handle_code_dragged(id : String, new_pos : Vector2):
-    get_node("%CodeController").update_code_position(id,new_pos)
+    get_node("%CodeController").update_comment_position(id,new_pos)
 
 ## Event system callback
 func _handle_global_events(event, _msg : Dictionary):

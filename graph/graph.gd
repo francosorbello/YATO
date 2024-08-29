@@ -21,6 +21,7 @@ func _ready() -> void:
     get_menu_hbox().add_child(_create_node_btn("Comment",_on_comment_add,GlobalData.ButtonSelect.COMMENT));
     get_menu_hbox().add_child(_create_node_btn("Folder",_on_folder_add,GlobalData.ButtonSelect.FOLDER))
     get_menu_hbox().add_child(_create_node_btn("Task",_on_task_add,GlobalData.ButtonSelect.TASK))
+    get_menu_hbox().add_child(_create_node_btn("Code",on_code_add,GlobalData.ButtonSelect.CODE))
 
     # add valid connections
     add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
@@ -46,6 +47,8 @@ func _create_node_btn(title : String, handler, type : int) -> Button:
             btn = buttons[1].instantiate() as Button
         GlobalData.ButtonSelect.TASK:
             btn = buttons[2].instantiate() as Button
+        GlobalData.ButtonSelect.CODE:
+            btn = buttons[3].instantiate() as Button
         GlobalData.ButtonSelect.NEW:
             return _create_action_button(title,handler,type)
         GlobalData.ButtonSelect.LOAD:
@@ -77,6 +80,9 @@ func _on_new():
 ## called when adding a comment to the view
 func _on_comment_add():
     $Views/CommentView.handle_new_comment(_get_graph_center())
+
+func on_code_add():
+    $Views/CodeView.handle_new_code(_get_graph_center())
 
 ## called when adding a folder to the view
 func _on_folder_add():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://o6rnfxiau175"]
+[gd_scene load_steps=33 format=3 uid="uid://o6rnfxiau175"]
 
 [ext_resource type="Script" path="res://graph/graph.gd" id="1_wh2cp"]
 [ext_resource type="PackedScene" uid="uid://chqt4rlcl1rb6" path="res://graph/button/comment_button.tscn" id="2_ncbqv"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d2sm7kkru3xnh" path="res://graph/button/task_button.tscn" id="4_cm37b"]
 [ext_resource type="Script" path="res://controllers/comment_controller.gd" id="4_qhup1"]
 [ext_resource type="Script" path="res://controllers/connection_controller.gd" id="5_ku40f"]
+[ext_resource type="PackedScene" uid="uid://yrhx811qni53" path="res://graph/button/code_button.tscn" id="5_qciju"]
 [ext_resource type="Script" path="res://views/comment_view.gd" id="5_r8306"]
 [ext_resource type="PackedScene" uid="uid://bmvqtin2mfqwp" path="res://graph/button/action_button.tscn" id="5_tm4y1"]
 [ext_resource type="Script" path="res://controllers/db_controller.gd" id="6_ipw3w"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" path="res://views/task_view.gd" id="11_eibjs"]
 [ext_resource type="PackedScene" uid="uid://dceugauyqid5w" path="res://nodes/task_node/task_node.tscn" id="12_nkwif"]
 [ext_resource type="Script" path="res://controllers/image_controller.gd" id="12_pq2c6"]
+[ext_resource type="Script" path="res://controllers/code_controller.gd" id="13_hex4n"]
 [ext_resource type="Texture2D" uid="uid://dbblxuqlhi6o1" path="res://assets/arrowLeft.png" id="14_d148c"]
 [ext_resource type="Script" path="res://graph/return_button.gd" id="15_d6xoc"]
 [ext_resource type="Script" path="res://views/task_item_view.gd" id="18_lhnsc"]
@@ -27,7 +29,9 @@
 [ext_resource type="Script" path="res://views/image_view.gd" id="22_k8if2"]
 [ext_resource type="PackedScene" uid="uid://fymvgqsvpe6r" path="res://nodes/image_node/image_node.tscn" id="23_drwai"]
 [ext_resource type="PackedScene" uid="uid://cgvsy1d3xvtq1" path="res://main/save_dialog.tscn" id="23_i1mlu"]
+[ext_resource type="Script" path="res://views/code_view.gd" id="24_xvyi3"]
 [ext_resource type="Script" path="res://input/short_cut_manager.gd" id="25_xg25c"]
+[ext_resource type="PackedScene" uid="uid://cws1be1ml7md1" path="res://nodes/code_node/code_node.tscn" id="26_5de0p"]
 
 [node name="Graph" type="GraphEdit"]
 anchors_preset = 15
@@ -37,7 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 right_disconnects = true
 script = ExtResource("1_wh2cp")
-buttons = Array[PackedScene]([ExtResource("2_ncbqv"), ExtResource("3_w322d"), ExtResource("4_cm37b")])
+buttons = Array[PackedScene]([ExtResource("2_ncbqv"), ExtResource("3_w322d"), ExtResource("4_cm37b"), ExtResource("5_qciju")])
 action_button = ExtResource("5_tm4y1")
 
 [node name="Controllers" type="Node" parent="."]
@@ -70,6 +74,10 @@ script = ExtResource("10_prkef")
 unique_name_in_owner = true
 script = ExtResource("12_pq2c6")
 
+[node name="CodeController" type="Node" parent="Controllers"]
+unique_name_in_owner = true
+script = ExtResource("13_hex4n")
+
 [node name="Views" type="Node" parent="."]
 
 [node name="CommentView" type="Node" parent="Views" node_paths=PackedStringArray("graph")]
@@ -99,6 +107,11 @@ graph = NodePath("../../..")
 [node name="ImageView" type="Node" parent="Views" node_paths=PackedStringArray("graph")]
 script = ExtResource("22_k8if2")
 image_scene = ExtResource("23_drwai")
+graph = NodePath("../..")
+
+[node name="CodeView" type="Node" parent="Views" node_paths=PackedStringArray("graph")]
+script = ExtResource("24_xvyi3")
+node_scene = ExtResource("26_5de0p")
 graph = NodePath("../..")
 
 [node name="ReturnButton" type="Button" parent="."]

@@ -31,4 +31,4 @@ syntax_highlighter = SubResource("CodeHighlighter_yjgdl")
 highlight_all_occurrences = true
 gutters_draw_line_numbers = true
 
-[connection signal="focus_exited" from="TextEdit" to="." method="_on_code_edit_focus_exited"]
+[connection signal="focus_exited" from="TextEdit" to="." method="_on_text_edit_focus_exited"]

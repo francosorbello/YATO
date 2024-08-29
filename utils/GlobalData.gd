@@ -11,6 +11,7 @@ enum ButtonSelect
     COMMENT,
     FOLDER,
     TASK,
+    CODE,
     NEW,
     LOAD,
     SAVE,

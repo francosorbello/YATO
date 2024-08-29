@@ -1,2 +1,3 @@
-extends TodoNodeDB 
+extends CommentDB 
 class_name CodeDB
+

@@ -7,3 +7,4 @@ class_name ProjectSaveData
 @export var tasks : ListResource
 @export var task_items : ListResource
 @export var images : ListResource
+@export var codes : ListResource
