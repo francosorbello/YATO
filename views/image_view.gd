@@ -5,6 +5,7 @@ extends Node
 
 func _ready() -> void:
     GlobalEventSystem.suscribe(self,"_handle_global_events")
+    get_viewport().files_dropped.connect(_handle_files_dropped)
 
 func add_image_to_view(new_image : ImageModel):
     var image_instance = image_scene.instantiate()
@@ -35,7 +36,18 @@ func _handle_global_events(event, _msg : Dictionary):
     if event == GlobalEventSystem.GameEvent.GE_FOLDER_OPENED:
         load_nodes_from_folder(_msg.folder_id)
 
+func _handle_files_dropped(files : Array):
+    for file in files:
+        var image = Image.new()
+        var status = image.load(file)
+        if status != OK:
+            # push_error("Error loading image")
+            return
+        var image_model = get_node("%ImageController").add_image(graph.get_global_mouse_position(),image)
+        add_image_to_view(image_model)
+
 func load_nodes_from_folder(folder_id : String):
     var images = get_node("%ImageController").get_nodes_from_folder(folder_id)
     for img : ImageModel in images:
         add_image_to_view(img)
+
