@@ -23,7 +23,6 @@ func delete(id: String) -> TodoNodeModel:
 
 func update(_id: String, _data : Dictionary) -> TodoNodeModel:
     if _data.has("size"):
-        print("updating size ", _data.size)
         var i = get_node_index(_id)
         nodes[i].size = _data.size
         return nodes[i]
