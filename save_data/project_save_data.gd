@@ -6,3 +6,4 @@ class_name ProjectSaveData
 @export var connections : ListResource
 @export var tasks : ListResource
 @export var task_items : ListResource
+@export var images : ListResource

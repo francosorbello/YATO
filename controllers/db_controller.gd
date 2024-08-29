@@ -6,6 +6,7 @@ var folder_db
 var connection_db
 var task_db
 var task_item_db
+var image_db : ImageDB
 
 func _ready() -> void:
     comment_db = GlobalData.get_comment_db()
@@ -13,6 +14,7 @@ func _ready() -> void:
     connection_db = GlobalData.get_connection_db()
     task_db = GlobalData.get_task_db()
     task_item_db = GlobalData.get_task_item_db()
+    image_db = GlobalData.get_image_db()
 
 func delete_folder(id : String) -> FolderModel:
     var deleted_folder = folder_db.delete(id)
@@ -20,6 +22,7 @@ func delete_folder(id : String) -> FolderModel:
     comment_db.delete_from_folder(id)
     connection_db.delete_from_folder(id)
     folder_db.delete_from_folder(id)
+    image_db.delete_from_folder(id)
     
     return deleted_folder
 
@@ -39,6 +42,7 @@ func save(save_path : String):
     var connections = connection_db.save()
     var tasks = task_db.save()
     var task_items = task_item_db.save()
+    var images = image_db.save()
 
     var project_save_file = ProjectSaveData.new()
     project_save_file.comments = comments
@@ -46,6 +50,7 @@ func save(save_path : String):
     project_save_file.connections = connections
     project_save_file.tasks = tasks
     project_save_file.task_items = task_items
+    project_save_file.images = images
 
     var status = ResourceSaver.save(project_save_file,save_path)
     if status != OK:
@@ -69,6 +74,7 @@ func load(load_path : String) -> ProjectSaveData:
     connection_db.load(project.connections)
     task_db.load(project.tasks)
     task_item_db.load(project.task_items)
+    image_db.load(project.images)
 
     # global event so the ui updates
     GlobalEventSystem.emit(GlobalEventSystem.GameEvent.GE_LOADED,{"project":project})
@@ -80,3 +86,4 @@ func clear():
     task_db.clear()
     connection_db.clear()
     task_item_db.clear()
+    image_db.clear()

@@ -27,3 +27,15 @@ func _handle_image_resized(id : String, new_size : Vector2):
 func _on_short_cut_manager_on_paste_image(image:Image) -> void:
     var image_model = get_node("%ImageController").add_image(graph.get_global_mouse_position(),image)
     add_image_to_view(image_model)
+
+func _handle_global_events(event, _msg : Dictionary):
+    if event == GlobalEventSystem.GameEvent.GE_LOADED:
+        load_nodes_from_folder(GlobalData.current_folder_node.uuid)
+    
+    if event == GlobalEventSystem.GameEvent.GE_FOLDER_OPENED:
+        load_nodes_from_folder(_msg.folder_id)
+
+func load_nodes_from_folder(folder_id : String):
+    var images = get_node("%ImageController").get_nodes_from_folder(folder_id)
+    for img : ImageModel in images:
+        add_image_to_view(img)

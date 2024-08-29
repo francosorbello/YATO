@@ -8,6 +8,7 @@ func add(folder_id : String, data: Dictionary):
     if(err == OK):
         new_image_node.position = data.position
     if data.has("image"):
+        print("Image added: ", data.image)
         new_image_node.image = data.image
     nodes.append(new_image_node)
     return new_image_node
@@ -39,6 +40,6 @@ func save():
 
 func load(images : ListResource):
     for value : ImageSaveData in images.data:
-        var new_image = add(value.folder_uuid,{"position":value.position})
+        var new_image = add(value.folder_uuid,{"position":value.position,"image":value.image})
         replace_id(new_image.uuid,value.uuid)
         update(value.uuid,{"position":value.position,"image":value.image, "size":value.size})
