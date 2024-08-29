@@ -63,5 +63,4 @@ func _handle_global_events(event, _msg : Dictionary):
         load_nodes_from_folder(_msg.folder_id)
 
 func _handle_comment_resized(id : String, new_size : Vector2):
-    print("comment resized")
     get_node("%CommentController").resize(id,new_size)

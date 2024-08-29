@@ -34,5 +34,4 @@ func _on_title_focus_exited() -> void:
 
 
 func _on_slot_updated(slot_index:int) -> void:
-    print("Slot updated: ",slot_index)
     pass # Replace with function body.

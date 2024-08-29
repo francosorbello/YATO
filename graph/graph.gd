@@ -135,7 +135,6 @@ func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
 
 ## called when trying to disconnect nodes
 func _on_disconnection_request(from_node: StringName, from_port: int, to_node: StringName, to_port: int) -> void:
-    print("asking for disconnect?")
     get_node("%ConnectionController").handle_disconnect_request(self,from_node,from_port,to_node,to_port)
 
 func _on_return_button_return_to_folder(id:String) -> void:
@@ -152,6 +151,7 @@ func _handle_context_menu(index,mouse_pos):
 
 func _on_save_dialog_file_selected(path:String) -> void:
     get_node("%DBController").save(path)
+    GlobalData.quick_save_path = path
     $SaveDialog.hide()
 
 func _on_load_dialog_file_selected(path:String) -> void:
@@ -162,5 +162,4 @@ func _on_load_dialog_file_selected(path:String) -> void:
     pass # Replace with function body.
 
 func _on_shortcut_manager_on_shortcut_pressed() -> void:
-    print("hello")
     _on_quick_save()

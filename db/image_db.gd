@@ -8,7 +8,6 @@ func add(folder_id : String, data: Dictionary):
     if(err == OK):
         new_image_node.position = data.position
     if data.has("image"):
-        print("Image added: ", data.image)
         new_image_node.image = data.image
     nodes.append(new_image_node)
     return new_image_node
