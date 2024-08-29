@@ -38,3 +38,6 @@ func get_task_item_db() -> TodoNodeDB:
 
 func get_image_db() -> ImageDB:
     return $DB/ImageDB
+
+func get_code_db() -> CodeDB:
+    return $DB/CodeDB

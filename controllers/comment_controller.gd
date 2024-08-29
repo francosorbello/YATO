@@ -1,4 +1,5 @@
 extends Node
+class_name CommentController
 
 var comment_db
 

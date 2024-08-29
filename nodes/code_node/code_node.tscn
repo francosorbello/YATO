@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://cws1be1ml7md1"]
+
+[ext_resource type="Script" path="res://nodes/comment_node/comment_node.gd" id="1_n24wn"]
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_yjgdl"]
+number_color = Color(0.556863, 0.792157, 0.901961, 1)
+symbol_color = Color(0.737255, 0.423529, 0.145098, 1)
+function_color = Color(0.345098, 0.505882, 0.341176, 1)
+member_variable_color = Color(1, 1, 1, 1)
+
+[node name="CodeNode" type="GraphNode"]
+offset_right = 250.0
+offset_bottom = 203.0
+resizable = true
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_n24wn")
+
+[node name="TextEdit" type="CodeEdit" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+scroll_fit_content_height = true
+syntax_highlighter = SubResource("CodeHighlighter_yjgdl")
+highlight_all_occurrences = true
+gutters_draw_line_numbers = true
+
+[connection signal="focus_exited" from="TextEdit" to="." method="_on_code_edit_focus_exited"]

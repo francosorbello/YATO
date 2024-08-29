@@ -1,6 +1,7 @@
 extends TodoNodeDB
+class_name CommentDB
 
-func add(folder_id : String, data: Dictionary):
+func add(folder_id : String, data: Dictionary) -> CommentModel:
     var new_comment = CommentModel.new()
     new_comment.folder_uuid = folder_id
     var err = verify_data(data)
@@ -25,7 +26,7 @@ func update(id, data) -> CommentModel:
     
     return nodes[comment_index]
 
-func save():
+func save() -> ListResource:
     var data = ListResource.new()
     for node : CommentModel in nodes:
         var node_save_data = CommentSaveData.new()

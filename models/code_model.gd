@@ -1,0 +1,2 @@
+extends CommentModel
+class_name CodeModel
