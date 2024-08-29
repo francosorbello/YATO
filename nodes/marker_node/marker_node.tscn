@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1mwnca7tmhp1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lolpq"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.733002, 2.75549e-06, 6.73831e-07, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7hmb3"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.47467, 0.000483016, 0.000264791, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ysrg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pq7hu"]
+
+[sub_resource type="Theme" id="Theme_f2gxj"]
+GraphNode/styles/panel = SubResource("StyleBoxFlat_lolpq")
+GraphNode/styles/panel_selected = SubResource("StyleBoxFlat_7hmb3")
+GraphNode/styles/titlebar = SubResource("StyleBoxEmpty_3ysrg")
+GraphNode/styles/titlebar_selected = SubResource("StyleBoxEmpty_pq7hu")
+
+[node name="MarkerNode" type="GraphNode"]
+offset_right = 183.0
+offset_bottom = 101.0
+theme = SubResource("Theme_f2gxj")
