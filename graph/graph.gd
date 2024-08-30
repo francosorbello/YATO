@@ -1,11 +1,5 @@
 extends GraphEdit
 
-enum NodeTypes 
-{
-    NT_FOLDER,
-    NT_COMMENT,
-    NT_TASK
-}
 
 @export var buttons : Array[PackedScene] = []
 @export var action_button : PackedScene
@@ -24,7 +18,7 @@ func _ready() -> void:
     get_menu_hbox().add_child(_create_node_btn("Code",on_code_add,GlobalData.ButtonSelect.CODE))
 
     # add valid connections
-    add_valid_connection_type(NodeTypes.NT_COMMENT,NodeTypes.NT_COMMENT)
+    add_valid_connection_type(1,1)
 
 ## Clear all nodes from view
 func clear():
@@ -125,18 +119,26 @@ func _handle_comment_change(id : String, n_comment : String):
 func _on_delete_nodes_request(nodes:Array[StringName]) -> void:
     for child in get_children():
         if child is TodoNode and nodes.has(child.name):
-            if child.node_type == NodeTypes.NT_COMMENT:
+            if child.node_type == GlobalData.NodeType.COMMENT:
                 get_node("%CommentController").delete_comment(child.model_id)
                 get_node("%ConnectionController").delete_connections(child.model_id)
                 child.queue_free()
             
-            if child.node_type == NodeTypes.NT_FOLDER:
+            if child.node_type == GlobalData.NodeType.FOLDER:
                 ## Warning: note the use of db_controller instead of folder_controller
                 get_node("%DBController").delete_all_from_folder(child.model_id)
                 child.queue_free()
                 pass
-            if child.node_type == NodeTypes.NT_TASK:
+            if child.node_type == GlobalData.NodeType.TASK:
                 get_node("%TaskController").delete_task(child.model_id)
+                get_node("%ConnectionController").delete_connections(child.model_id) 
+                child.queue_free()
+            if child.node_type == GlobalData.NodeType.CODE:
+                get_node("%CodeController").delete_comment(child.model_id)
+                get_node("%ConnectionController").delete_connections(child.model_id)
+                child.queue_free()
+            if child.node_type == GlobalData.NodeType.IMAGE:
+                get_node("%ImageController").delete_image(child.model_id)
                 child.queue_free()
 
 ## called when trying to disconnect nodes

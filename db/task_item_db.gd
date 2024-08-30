@@ -41,6 +41,8 @@ func save():
     return data
 
 func load(items : ListResource):
+    if items == null:
+        return
     for value : TaskItemSaveData in items.data:
         var new_task_item = add(value.folder_uuid,{"finished":value.finished,"title":value.title})
         replace_id(new_task_item.uuid,value.uuid)

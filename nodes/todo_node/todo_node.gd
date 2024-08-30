@@ -1,16 +1,10 @@
 class_name TodoNode extends GraphNode
 
-enum NodeTypes 
-{
-    FOLDER,
-    COMMENT,
-    TASK
-}
 
 signal moved(id : String, new_pos : Vector2)
 signal node_resized(id : String, new_size : Vector2)
 
-@export var node_type : NodeTypes
+@export var node_type : GlobalData.NodeType
 var model_id : String
 
 func _ready() -> void:

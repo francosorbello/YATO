@@ -12,16 +12,17 @@ member_variable_color = Color(1, 1, 1, 1)
 offset_right = 250.0
 offset_bottom = 203.0
 resizable = true
-slot/0/left_enabled = false
-slot/0/left_type = 0
-slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_enabled = true
+slot/0/left_type = 1
+slot/0/left_color = Color(0.643137, 0.6, 0.701961, 1)
 slot/0/left_icon = null
-slot/0/right_enabled = false
-slot/0/right_type = 0
-slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color(0.643137, 0.6, 0.701961, 1)
 slot/0/right_icon = null
 slot/0/draw_stylebox = true
 script = ExtResource("1_n24wn")
+node_type = 3
 
 [node name="TextEdit" type="CodeEdit" parent="."]
 layout_mode = 2

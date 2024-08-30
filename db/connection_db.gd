@@ -42,6 +42,8 @@ func save() -> ListResource:
     return data
 
 func load(connections : ListResource):
+    if connections == null:
+        return
     for connection : ConnectionSaveData in connections.data:
         var params = {
             "from_node_id" : connection.from_node_id,

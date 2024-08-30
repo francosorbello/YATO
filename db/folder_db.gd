@@ -46,6 +46,8 @@ func save():
     return data
 
 func load(folders : ListResource):
+    if folders == null:
+        return
     for folder in folders.data:
         var new_folder = add(folder.folder_uuid,{"position":folder.position})
         replace_id(new_folder.uuid,folder.uuid)

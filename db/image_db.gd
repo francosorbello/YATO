@@ -38,6 +38,8 @@ func save():
     return data
 
 func load(images : ListResource):
+    if images == null:
+        return
     for value : ImageSaveData in images.data:
         var new_image = add(value.folder_uuid,{"position":value.position,"image":value.image})
         replace_id(new_image.uuid,value.uuid)

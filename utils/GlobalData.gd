@@ -18,6 +18,15 @@ enum ButtonSelect
     QUICK_SAVE,
 }
 
+enum NodeType
+{
+    FOLDER,
+    COMMENT,
+    TASK,
+    CODE,
+    IMAGE
+}
+
 func _ready():
     if current_folder_node == null:
         current_folder_node = get_folder_db().add_root_folder()
