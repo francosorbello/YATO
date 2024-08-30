@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="ProjectSaveData" load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://save_data/list_resource.gd" id="1_eeaw4"]
+[ext_resource type="Script" path="res://save_data/comment_save_data.gd" id="2_dmxeq"]
+[ext_resource type="Script" path="res://save_data/project_save_data.gd" id="3_sw1qc"]
+
+[sub_resource type="Resource" id="Resource_ie2ln"]
+script = ExtResource("1_eeaw4")
+data = []
+
+[sub_resource type="Resource" id="Resource_g3ail"]
+script = ExtResource("2_dmxeq")
+comment = ""
+position = Vector2(520, 280)
+uuid = "dfd8cd4d-2ad5-4025-84fb-10b24b6c5371"
+folder_uuid = "0"
+size = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_dgtoo"]
+script = ExtResource("1_eeaw4")
+data = [SubResource("Resource_g3ail")]
+
+[sub_resource type="Resource" id="Resource_rqug4"]
+script = ExtResource("1_eeaw4")
+data = []
+
+[sub_resource type="Resource" id="Resource_xu10c"]
+script = ExtResource("1_eeaw4")
+data = []
+
+[sub_resource type="Resource" id="Resource_ryqqb"]
+script = ExtResource("1_eeaw4")
+data = []
+
+[sub_resource type="Resource" id="Resource_2kayh"]
+script = ExtResource("1_eeaw4")
+data = []
+
+[sub_resource type="Resource" id="Resource_6fb8o"]
+script = ExtResource("1_eeaw4")
+data = []
+
+[resource]
+script = ExtResource("3_sw1qc")
+comments = SubResource("Resource_dgtoo")
+folders = SubResource("Resource_xu10c")
+connections = SubResource("Resource_rqug4")
+tasks = SubResource("Resource_6fb8o")
+task_items = SubResource("Resource_2kayh")
+images = SubResource("Resource_ryqqb")
+codes = SubResource("Resource_ie2ln")

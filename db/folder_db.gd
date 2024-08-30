@@ -16,6 +16,11 @@ func add_root_folder():
     nodes[i].uuid = GlobalData.PARENT_FOLDER_UUID
     return nodes[i]
 
+func clear():
+    # nodes.clear()
+    super.clear()
+    add_root_folder()
+
 func update(id : String, data : Dictionary) -> FolderModel:
     var i = get_node_index(id)
     if i == -1:
