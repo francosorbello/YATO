@@ -111,8 +111,8 @@ func _on_load():
 ## Center of the graph
 func _get_graph_center() -> Vector2:
     var screen_size = DisplayServer.window_get_size()
-    var x = screen_size.x / 2 - scroll_offset.x + randi_range(-50,50)
-    var y = screen_size.y / 2 - scroll_offset.y + randi_range(-50,50)
+    var x = screen_size.x / 2 + scroll_offset.x + randi_range(-50,50)
+    var y = screen_size.y / 2 + scroll_offset.y + randi_range(-50,50)
 
     return Vector2(x,y)
 
@@ -147,6 +147,7 @@ func _on_return_button_return_to_folder(id:String) -> void:
     $Views/FolderView.on_folder_open(id)
 
 func _handle_context_menu(index,mouse_pos):
+    mouse_pos += scroll_offset
     match index:
         0:
             $Views/CommentView.handle_new_comment(mouse_pos)

@@ -132,6 +132,7 @@ layout_mode = 1
 size = Vector2i(400, 400)
 visible = false
 always_on_top = false
+use_native_dialog = true
 
 [node name="LoadDialog" type="FileDialog" parent="."]
 title = "Open a File"
@@ -141,6 +142,7 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.res", "*.tres")
+use_native_dialog = true
 
 [node name="ShortCutManager" type="Node" parent="."]
 script = ExtResource("25_xg25c")
