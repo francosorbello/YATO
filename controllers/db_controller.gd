@@ -74,6 +74,8 @@ func load(load_path : String) -> ProjectSaveData:
     if project == null:
         return null
 
+    GlobalData.current_folder_node = folder_db.add_root_folder()
+
     comment_db.load(project.comments)
     folder_db.load(project.folders)
     connection_db.load(project.connections)

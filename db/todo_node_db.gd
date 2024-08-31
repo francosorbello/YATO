@@ -49,6 +49,8 @@ func get_node_index(id : String) -> int:
 func get_nodes_from_folder(folder_id : String):
     var folder_nodes = []
     for node in nodes:
+        if node.uuid == GlobalData.PARENT_FOLDER_UUID:
+            continue
         if node.folder_uuid == folder_id:
             folder_nodes.append(node)
     

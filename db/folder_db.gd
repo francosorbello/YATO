@@ -19,7 +19,7 @@ func add_root_folder():
 func clear():
     # nodes.clear()
     super.clear()
-    add_root_folder()
+    # add_root_folder()
 
 func update(id : String, data : Dictionary) -> FolderModel:
     var i = get_node_index(id)
