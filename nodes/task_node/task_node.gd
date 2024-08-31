@@ -19,8 +19,8 @@ func delete_item(id):
         if not item is HBoxContainer:
             continue 
         if item.item_id == id:
-            set_slot(slot_count,false,1,Color.WHITE,false,1,Color.WHITE)
-            clear_slot(slot_index)
+            clear_slot(slot_count)
+            print(get_output_port_count())
             item.queue_free()
             slot_count -= 1
             break
